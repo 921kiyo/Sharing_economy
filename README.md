@@ -1,4 +1,4 @@
-# Sharing_economy (Mercari Euro Hack 2018)
+# Improving the sharing economy (Mercari Euro Hack 2018)
 
 We are planning to implement a web service that will improve the quality and user-friendliness of the delivery services in the sharing economy. The service targets consumers who users of such platforms as Mercari and in need of product delivery.
 
