@@ -1,8 +1,10 @@
 # Sharing_economy (Mercari Euro Hack 2018)
 
-We are planning to develop a web service for solving delivery problem. 
+We are planning to implement a web service that will improve the quality and user-friendliness of the delivery services in the sharing economy. The service targets consumers who users of such platforms as Mercari and in need of product delivery.
 
-## Technologies
+The idea will be continuously fleshed out prior to and during the hackathon. Content is therefore subject to change. 
+
+## Technology Stack
 
 - JavaScript (for Frontend)
 - Bootstrap (for GUI)
