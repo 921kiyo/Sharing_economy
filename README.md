@@ -8,6 +8,7 @@ We are planning to develop a web service for solving delivery problem.
 - Bootstrap (for GUI)
 - Python Flask (for Backend)
 - Third-party API (TBD)
+- PostQreSQL or other NoSQL for storing data
 
 ## Members
 
