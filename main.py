@@ -40,7 +40,7 @@ def user_home(user_id):
     if request.method == "GET":
         # Returns the list of products by the user
         all_products = session.query(Product).filter_by(user_id=user_id)
-        print(all_products)
+        return render_template("/index.html", outputs=all_products)
 
 
     if request.method == "POST":
