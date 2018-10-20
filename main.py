@@ -77,21 +77,22 @@ def charity_home(charity_id):
 
 
 @app.route("/product/<int:product_id>")
-def user_product(product_id):
+def show_product(product_id):
     """
     Gets product detail on the user page, posts a new product
 
     :return: json
     """
+    print("Hello")
+    # product = session.query(Product).filter_by(id=product_id).first()
+    # if product is None:
+    #     return jsonify(output=False, error="Product does not exist")  #TODO: Confirm format
 
-    product = session.query(Product).filter_by(id=product_id).first()
-    if product is None:
-        return jsonify(output=False, error="Product does not exist")  #TODO: Confirm format
-
-    return jsonify(output=product)
+    # return jsonify(output=product)
+    return
 
 @app.route("/product/<int:product_id>")
-def show_product(product_id):
+def user_product(product_id):
     # product = session.query(Product).filter_by(id=product_id).one()
     product = {
             "name": "Water T-shirt",

@@ -17,7 +17,7 @@ class User(Base):
     donating = Column(Boolean, default=False)
     total_donated = Column(Float, default=0)
     products = relationship("Product")
-    charity_donating = relationship("Charity")
+    # charity_donating = relationship("Charity")
 
     @property
     def serialize(self):
