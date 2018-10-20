@@ -22,14 +22,14 @@ session = DBSession()
 
 @app.route("/")
 def home():
-    """
-    Mercari all products homepage
+    # """
+    # Mercari all products homepage
 
-    :return:
-    """
+    # :return:
+    # """
     products = session.query(Product).all()
 
-    # TODO: Change html
+    # # TODO: Change html
     return render_template("/index.html", outputs=products)
 
 
@@ -80,7 +80,6 @@ def charity_home(charity_id=None):
     
     charity = session.query(Charity).filter_by(charity_id).first()
     return jsonify(outputs=charity)
-
 
 @app.route("/product/<int:product_id>")
 def show_product(product_id):

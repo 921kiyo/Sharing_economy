@@ -71,44 +71,21 @@
 </div>
 </div>
 
+
+
 <div class="row">
-<div class="col-md-12">
-	<div class="row">
 	{% for output in outputs %}
-	
-	<div class="col-sm-3" >
-		<img src="{{ output.image}}" alt="later", height="100", width="100">
-		<a href="{{url_for('show_product', product_id=output.id)}}">{{output.name}}</a>
+	<div class="col-sm-4">
+		<div class="panel panel-primary">
+		<div class="panel-heading">{{output.name}}</div>
+		<div class="panel-body"><img src="{{ output.image}}" class="img-responsive" style="width:100%" alt="Image"></div>
+		<div class="panel-footer">$ {{output.price}}</div>
+		</div>
 	</div>
-	
 	{% endfor %}
-	
-	</div>
 </div>
-</div>
-
-
-
 
 
 <script>
-// $('my-selector').dialog('option', 'position', 'center');
-// $("#dialog").dialog({
-//        autoOpen: false,
-//         height: "auto",
-//         width: "auto",
-//         modal: true,
-//          my: "center",
-//          at: "center",
-//          of: window
-// })
-// $("#exampleModal").modal('show').css({
-//     'margin-top': function () { //vertical centering
-//         return -($(this).height() / 2);
-//     },
-//     'margin-left': function () { //Horizontal centering
-//         return -($(this).width() / 2);
-//     }
-// });
 </script>
 {% endblock %}
