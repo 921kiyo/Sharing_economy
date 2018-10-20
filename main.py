@@ -19,7 +19,10 @@ def hello_world():
     """
 
     print(PRODUCT_LISTINGS)
-    return jsonify(data=PRODUCT_LISTINGS)
+    return render_template("/index.html", outputs=PRODUCT_LISTINGS)
+    # foo = jsonify(PRODUCT_LISTINGS)
+    # return jsonify(outputs=foo)
+    
 
 
 if __name__ == '__main__':
