@@ -8,7 +8,7 @@ app = Flask(__name__)
 def hello_world():
     # return render_template("/index.html", hello="Hello world!")
     foo = [1,2,3]
-    return render_template("/index.html", hello=foo)
+    return render_template("/index.html", outputs=foo)
     # return 'Hello, World!'
 
 if __name__ == '__main__':
