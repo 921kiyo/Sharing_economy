@@ -11,13 +11,16 @@ from models import Base, User, Product, Charity
 from flask import Flask, render_template, url_for, redirect, request \
     , flash, jsonify, make_response, session as login_session
 
+from flask_sqlalchemy_session import flask_scoped_session
+
 app = Flask(__name__)
 
 engine = create_engine(DATABASE_URL)
 Base.metadata.bind = engine
 
 DBSession = sessionmaker(bind=engine)
-session = DBSession()
+# session = DBSession()
+session = flask_scoped_session(sessionmaker(bind=engine))
 
 
 @app.route("/")
@@ -104,7 +107,6 @@ def buy_product(product_id):
 
     :return: Void
     """
-
     product = session.query(Product).filter_by(id=product_id).first()
 
     if product.sold:
@@ -126,9 +128,10 @@ def buy_product(product_id):
         print("Total donated to date is", user.total_donated, "to", charity.name)
 
     session.commit()
+    flash('Purchase complete. Thank you so much!', 'success')
 
-    return jsonify(output=True)
-
+    products = session.query(Product).all()
+    return render_template("/index.html", outputs=products)
 
 if __name__ == '__main__':
 
