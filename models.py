@@ -20,6 +20,10 @@ class User(Base):
     products = relationship("Product")
     # charity_donating = relationship("Charity")
 
+
+    # def __repr__(self):
+
+
     @property
     def serialize(self):
       return{
