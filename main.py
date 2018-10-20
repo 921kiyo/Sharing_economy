@@ -84,8 +84,8 @@ def charity_home():
 
 
 # TODO: Confirm the structure
-@app.route("/user<int:user_id>/product/", methods=['GET', 'POST'])
-def user_product(user_id):
+@app.route("/product/<int:product_id>", methods=['GET'])
+def user_product(product_id):
     """
     Gets product detail on the user page, posts a new product
 
