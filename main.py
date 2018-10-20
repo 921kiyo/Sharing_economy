@@ -83,30 +83,13 @@ def show_product(product_id):
 
     :return: json
     """
-    print("Hello")
-    # product = session.query(Product).filter_by(id=product_id).first()
+    product = session.query(Product).filter_by(id=product_id).first()
     # if product is None:
     #     return jsonify(output=False, error="Product does not exist")  #TODO: Confirm format
-
-    # return jsonify(output=product)
-    return
-
-@app.route("/product/<int:product_id>")
-def user_product(product_id):
-    # product = session.query(Product).filter_by(id=product_id).one()
-    product = {
-            "name": "Water T-shirt",
-            "url": "https://cdn.shopify.com/s/files/1/0209/1522/products/t-shirts-water-t-shirt-1_grande.jpg?v=1527120370",
-            "seller_id": 1,
-            "description": "Beautiful T-shirt with a water logo on it.",
-            "image": 1,  # Dummy
-            "price": 26,  # Dollars
-            "categories": ["apparel", "boys"],
-            "condition": "good",  # Should this be an integer
-            "size": "XL",
-            "shipping_cost": 0
-        }
-    return render_template("item.html", product=product)
+    # product = jsonify(output=product.serialize)
+    
+    return jsonify(outputs=product)
+    # return render_template("product.html", product=product)
     
 
 @app.route("/buy")
