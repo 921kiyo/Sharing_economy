@@ -8,9 +8,17 @@
 <div class="col-md-3">
 </div>
 <div class="col-md-3">
+    {% if user.donating %}
+    <form action="{{url_for('user_home', user_id=user.id)}}" method="post">
+        <button type="submit" class="btn btn-secondary">
+            Deactivate Donation
+        </button>
+    </form>
+    {% else %}
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
         Apply Donation
     </button>
+    {% endif %}
                     
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="" role="document">

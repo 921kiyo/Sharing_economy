@@ -45,20 +45,24 @@ def user_home(user_id):
     # UPDATE donation
     if request.method == "POST":
         # Updates donation
-        charity_id = request.form["charity_radio"]
+        
         user = session.query(User).filter_by(id=user_id).first()
-        charity = session.query(Charity).filter_by(id=charity_id).first()
-
         # Toggled Off / On
-        if charity_id is None:
-            user.donating = False
-            charity_id.num_donators = charity.num_donators - 1
-            flash("sad", "failure")
-        else:
+        if "charity_radio" in request.form:
+            charity_id = request.form["charity_radio"]
+            user = session.query(User).filter_by(id=user_id).first()
+            charity = session.query(Charity).filter_by(id=charity_id).first()
+
             user.donating = True
             user.charity_id = charity_id
-            charity.num_donators = charity.num_donators + 1
+            # charity.num_donators = charity.num_donators + 1
             flash('Thank you for much for helping our charity partner!!', 'success')
+
+        else:
+            charity = session.query(Charity).filter_by(id=user.charity_id).first()
+            user.donating = False
+            # charity_id.num_donators = charity.num_donators - 1
+            flash("Sad you are leaving the donation", "error")            
         session.commit()
 
     # Returns the list of products by the user
