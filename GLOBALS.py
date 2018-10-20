@@ -2,6 +2,56 @@ DATABASE_URL = 'sqlite:///user_product_data.db'
 
 CONTRIBUTION_PERC = 0.03
 
+USERS = [
+
+    {
+        "name": "John Von Neumann",
+        "sex": "m",
+        "age": 73,
+        "country": "USA",
+        "city": "New York",
+        "longitude": -73.935242,
+        "latitude": 40.730610,
+    },
+    {
+        "name": "Albert Einstein",
+        "sex": "m",
+        "age": 76,
+        "country": "USA",
+        "city": "Philadelphia",
+        "longitude": -75.165222,
+        "latitude": 39.952583,
+    },
+    {
+        "name": "Alexander the Great",
+        "sex": "m",
+        "age": 32,
+        "country": "Greece",
+        "city": "Athens",
+        "longitude": 23.727539,
+        "latitude": 37.983810,
+    },
+    {
+        "name": "Oda Nobunaga",
+        "sex": "m",
+        "age": 48,
+        "country": "Japan",
+        "city": "Tokyo",
+        "longitude": 139.839478,
+        "latitude": 35.652832,
+    },
+    {
+        "name": "Florence Nightingale",
+        "sex": "f",
+        "age": 90,
+        "country": "England",
+        "city": "London",
+        "longitude": -0.118092,
+        "latitude": 51.509865,
+    },
+]
+
+
 PRODUCT_LISTINGS = {
 
     "John Von Neumann": [

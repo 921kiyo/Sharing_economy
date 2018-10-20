@@ -14,6 +14,11 @@ class User(Base):
 
     id = Column(Integer, primary_key=True)
     name = Column(String(250), nullable=False)
+    sex = Column(String(1), nullable=False)  # M / F
+    country = Column(String(25), nullable=False)
+    city = Column(String(25), nullable=False)
+    age = Column(Integer, nullable=False)
+    haversine_distance = Column(Float, default=0)
     donating = Column(Boolean, default=False)
     total_donated = Column(Float, default=0)
     monthly_donations = Column(Float, default=0)
