@@ -1,12 +1,116 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="container-fluid">
+<div class="row">
+<div class="col-md-3">
+</div>
+<div class="col-md-3">
+</div>
+<div class="col-md-3">
+</div>
+<div class="col-md-3">
+	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+		Launch demo modal
+	</button>
+					
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="" role="document">
+	<!-- <div class="modal-dialog" role="document"> -->
+		<div class="modal-content">
+		<div class="modal-header">
+		<h5 class="modal-title" id="exampleModalLabel">Donation </h5>
+		<p>By selecting a charity, 3% of the total price will go to the charity you select</p>
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		<span aria-hidden="true">&times;</span>
+		</button>
+		</div>
+		<div class="modal-body">
+		<form>
+		<p>The form below contains three checkboxes. The last option is disabled:</p>
+		<form>
+			<div class="form-check">
+				<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+				<label class="form-check-label" for="exampleRadios1" data-target="#charity1" >
+					Charity1
+				</label>
+				<div id="charity1" class="collapse">
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+					sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+				</div>		
+			</div>
+			<div class="form-check">
+				<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+				<label class="form-check-label" for="exampleRadios2" data-target="#charity2" >
+					Charity2
+				</label>
+				<div id="charity2" class="collapse">
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+					sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+				</div>
+			</div>
+			<div class="form-check">
+				<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3">
+				<label class="form-check-label" for="exampleRadios3" data-target="#charity3" >
+					Charity3
+				</label>
+				<div id="charity3" class="collapse">
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+					sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+				</div>
+			</div>
+		</form>
+		</form>
+		</div>
+		<div class="modal-footer">
+		<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		<button type="button" class="btn btn-primary">Send message</button>
+		</div>
+		</div>
+	</div>
+	</div>
+			
+	
+</div>
+</div>
+
+<div class="row">
+<div class="col-md-12">
+	<div class="row">
 	{% for output in outputs["products"] %}
-	<div class="col-sm-3">
-	<img src="{{ output['url'] }}" alt="later", height="100", width="100">
-	{{output['price']}}
+	<div class="col-sm-3"  data-toggle="modal" data-target="#exampleModal">
+		<img src="{{ output['url'] }}" alt="later", height="100", width="100">
+		{{output['price']}}
 	</div>
 	{% endfor %}
+	
 	</div>
 </div>
+</div>
+
+
+
+
+
+<script>
+// $('my-selector').dialog('option', 'position', 'center');
+// $("#dialog").dialog({
+//        autoOpen: false,
+//         height: "auto",
+//         width: "auto",
+//         modal: true,
+//          my: "center",
+//          at: "center",
+//          of: window
+// })
+// $("#exampleModal").modal('show').css({
+//     'margin-top': function () { //vertical centering
+//         return -($(this).height() / 2);
+//     },
+//     'margin-left': function () { //Horizontal centering
+//         return -($(this).width() / 2);
+//     }
+// });
+</script>
 {% endblock %}
