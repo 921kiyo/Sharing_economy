@@ -1,62 +1,46 @@
-CONDITION = {
-    0: "poor",
-    1: "good",
-    2: "great"
-}
-
 DATABASE_URL = 'sqlite:///user_product_data.db'
 
 PRODUCT_LISTINGS = {
 
-    "products": [
+    "John Von Neumann": [
         {
-            "name": "Water T-shirt",
-            "url": "https://cdn.shopify.com/s/files/1/0209/1522/products/t-shirts-water-t-shirt-1_grande.jpg?v=1527120370",
-            "seller_id": 1,
-            "description": "Beautiful T-shirt with a water logo on it.",
-            "image": 1,  # Dummy
+            "name": "Navy Blue Peacoat",
+            "url": "https://static-mercariapp-uk.akamaized.net/photos/m59397082818_1.jpg?1540043962",
+            "description": "Smooth navy blue Peacoat. Suitable for any aspiring computer scientist.",
             "price": 26,  # Dollars
-            "categories": ["apparel", "boys"],
-            "condition": "good",  # Should this be an integer
-            "size": "XL",
-            "shipping_cost": 0
+            "condition": "Good",
+            "size": "L",
+            "shipping_cost": 4
         },
         {
-            "name": "Water T-shirt",
-            "url": "https://cdn.shopify.com/s/files/1/0209/1522/products/t-shirts-water-t-shirt-1_grande.jpg?v=1527120370",
-            "seller_id": 1,
-            "description": "Beautiful T-shirt with a water logo on it.",
-            "image": 1,  # Dummy
-            "price": 26,  # Dollars
-            "categories": ["apparel", "boys"],
-            "condition": "good",  # Should this be an integer
-            "size": "XL",
+            "name": "Denim Shirt",
+            "url": "https://static-mercariapp-uk.akamaized.net/photos/m31249014654_1.jpg?1540040441",
+            "description": "Men's suave denim shirt. Super cool worker look.",
+            "price": 10,  # Dollars
+            "condition": "New",
+            "size": "L",
             "shipping_cost": 0
         },
+    ],
+    "Albert Einstein": [
         {
-            "name": "Water T-shirt",
-            "url": "https://cdn.shopify.com/s/files/1/0209/1522/products/t-shirts-water-t-shirt-1_grande.jpg?v=1527120370",
-            "seller_id": 1,
-            "description": "Beautiful T-shirt with a water logo on it.",
-            "image": 1,  # Dummy
-            "price": 26,  # Dollars
-            "categories": ["apparel", "boys"],
-            "condition": "good",  # Should this be an integer
-            "size": "XL",
-            "shipping_cost": 0
+            "name": "Incredible Supreme Jumper",
+            "url": "https://ae01.alicdn.com/kf/HTB1Fj2gJVXXXXcqXVXXq6xXFXXXb/Supreme-Sweatshirts-Casual-Hoodies-Brand-Clothing-Couples-Clothes-Men-Women-Tops-Fashion-Moleton-Feminino-Einstein-funny.jpg",
+            "description": "Comfortable jumper with an incredibly handsome man on it.",
+            "price": 64,  # Dollars
+            "condition": "Like New",
+            "size": "M",
+            "shipping_cost": 1
         },
         {
-            "name": "Water T-shirt",
-            "url": "https://cdn.shopify.com/s/files/1/0209/1522/products/t-shirts-water-t-shirt-1_grande.jpg?v=1527120370",
-            "seller_id": 1,
-            "description": "Beautiful T-shirt with a water logo on it.",
-            "image": 1,  # Dummy
-            "price": 26,  # Dollars
-            "categories": ["apparel", "boys"],
-            "condition": "good",  # Should this be an integer
+            "name": "Stylish Men's Shorts",
+            "url": "https://images.express.com/is/image/expressfashion/0026_03532966_0713?cache=on&wid=361&fmt=jpeg&qlt=75,1&resmode=sharp2&op_usm=1,1,5,0&defaultImage=Photo-Coming-Soon",
+            "description": "Great for the beach!",
+            "price": 22,  # Dollars
+            "condition": "Poor",
             "size": "XL",
-            "shipping_cost": 0
-        }
+            "shipping_cost": 5
+        },
     ]
 }
 
