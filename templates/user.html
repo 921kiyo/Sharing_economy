@@ -45,6 +45,16 @@
                     </div>
                 </div>
                 {% endfor %}
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="charity_radio" id="exampleRadios1" value="{{charity.id}}">
+                    <label class="form-check-label" for="exampleRadios1" data-target="#charity1" >
+                        {{recommend_charity.name}}
+                    </label>
+                    <div id="charity1" class="collapse">
+                        {{recommend_charity.mission}}
+                    </div>
+                </div>
+                
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="button submit" class="btn btn-primary">Apply donation</button>

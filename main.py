@@ -26,6 +26,56 @@ DBSession = sessionmaker(bind=engine)
 # session = DBSession()
 session = flask_scoped_session(sessionmaker(bind=engine))
 
+
+def get_demographic_similarity(df, user_id):
+    # Scale columns
+    df["sex"] = df["sex"].apply(lambda x: 1 if x.lower() == "m" else 0)
+    df["age"] = (df["age"] - df["age"].min()) / (df["age"].max() - df["age"].min())
+    df["haversine_distance"] = (df["haversine_distance"] - df["haversine_distance"].min()) / (
+                df["haversine_distance"].max() - df["haversine_distance"].min())
+
+    # Get user column
+    user = df[df["id"] == user_id]
+
+    df["similarity"] = 0
+    # Calculates using euclidean distance
+    for col in df.columns:
+        df["similarity"] += (df[col] - user[col]) * (df[col] - user[col])
+
+    df["similarity"] = df["similarity"].apply(lambda x: sqrt(x))
+
+    similarity = df["similarity"]
+    similarity.sort_values(ascending=True)
+
+    return similarity
+
+
+def recommend(user_id):
+    """
+    Recommends a charity to the user id
+
+    :param user_id:
+    :return:
+    """
+
+    df = pd.read_sql(DATABASE_URL, columns=["id", "sex", "age", "haversine_distance"])
+
+    k = 5
+    similarity = get_demographic_similarity(df, user_id)
+
+    # Get the charities then select the most common
+    charity_counts = {}
+    for row in range(1, 1 + k):  # Start from 1 as first row is user itself with distance of 0
+        user_id = similarity.iloc[row]
+        u = session.query(User).filter_by(id=user_id).first()
+        charity_counts[u.charity_id] = charity_counts.get(u.charity_id, 0) + 1
+
+
+    # Sort and get top 1
+    best_charity_id = max(charity_counts, key=charity_counts.get)
+
+    return best_charity_id
+
 @app.route("/")
 def home():
     # """
@@ -73,7 +123,9 @@ def user_home(user_id):
     all_charities = session.query(Charity).all()
     print("ALL CHARITY ", all_charities)
     user = session.query(User).filter_by(id=user_id).first()
-    return render_template("/user.html", products=user_products, user=user, charities=all_charities)
+    rec_id = recommend(user_id)
+    rec = session.query(Charity).filter_by(id=rec_id)
+    return render_template("/user.html", products=user_products, user=user, charities=all_charities, recommend=rec)
 
 @app.route("/charity")
 @app.route("/charity/<int:charity_id>")
@@ -139,55 +191,6 @@ def buy_product(product_id):
 
     products = session.query(Product).all()
     return render_template("/index.html", outputs=products)
-
-def get_demographic_similarity(df, user_id):
-    # Scale columns
-    df["sex"] = df["sex"].apply(lambda x: 1 if x.lower() == "m" else 0)
-    df["age"] = (df["age"] - df["age"].min()) / (df["age"].max() - df["age"].min())
-    df["haversine_distance"] = (df["haversine_distance"] - df["haversine_distance"].min()) / (
-                df["haversine_distance"].max() - df["haversine_distance"].min())
-
-    # Get user column
-    user = df[df["id"] == user_id]
-
-    df["similarity"] = 0
-    # Calculates using euclidean distance
-    for col in df.columns:
-        df["similarity"] += (df[col] - user[col]) * (df[col] - user[col])
-
-    df["similarity"] = df["similarity"].apply(lambda x: sqrt(x))
-
-    similarity = df["similarity"]
-    similarity.sort_values(ascending=True)
-
-    return similarity
-
-
-def recommend(user_id):
-    """
-    Recommends a charity to the user id
-
-    :param user_id:
-    :return:
-    """
-
-    df = pd.read_sql(DATABASE_URL, columns=["id", "sex", "age", "haversine_distance"])
-
-    k = 5
-    similarity = get_demographic_similarity(df, user_id)
-
-    # Get the charities then select the most common
-    charity_counts = {}
-    for row in range(1, 1 + k):  # Start from 1 as first row is user itself with distance of 0
-        user_id = similarity.iloc[row]
-        u = session.query(User).filter_by(id=user_id).first()
-        charity_counts[u.charity_id] = charity_counts.get(u.charity_id, 0) + 1
-
-
-    # Sort and get top 1
-    best_charity_id = max(charity_counts, key=charity_counts.get)
-
-    return best_charity_id
 
 
 if __name__ == '__main__':
