@@ -1,5 +1,7 @@
 DATABASE_URL = 'sqlite:///user_product_data.db'
 
+CONTRIBUTION_PERC = 0.03
+
 PRODUCT_LISTINGS = {
 
     "John Von Neumann": [
