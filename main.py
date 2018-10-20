@@ -6,7 +6,7 @@ from flask import Flask, render_template, url_for, redirect, request \
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route("/")
 def hello_world():
     """
     Returns product listings for user homepage
@@ -16,6 +16,22 @@ def hello_world():
 
     print(PRODUCT_LISTINGS)
     return jsonify(data=PRODUCT_LISTINGS)
+
+
+@app.route("/donate")
+def apply_donation():
+    """
+    Updates the user's 'donating' status in the user database table
+
+    :return:
+    """
+
+    # Update database
+    pass
+
+@app.route("/catalog/tshirts")
+def show_catalog():
+    pass
 
 
 if __name__ == '__main__':
