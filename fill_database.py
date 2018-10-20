@@ -1,9 +1,11 @@
 
-from GLOBALS import DATABASE_URL, PRODUCT_LISTINGS, CHARITY_INFO
+from GLOBALS import DATABASE_URL, PRODUCT_LISTINGS, CHARITY_INFO, USERS
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from models import Base, Product, User, Charity
+
+from math import radians, asin, cos, sin, sqrt
 
 engine = create_engine(DATABASE_URL)
 Base.metadata.bind = engine
@@ -12,10 +14,37 @@ DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
 
+def haversine(lon1, lat1):
+    """
+    Calculate the great circle distance between two points
+    on the earth (specified in decimal degrees)
+    """
+    # convert decimal degrees to radians
+    lon2 = 0
+    lat2 = 0
+
+    lon1, lat1, lon2, lat2 = map(radians, [lon1, lat1, lon2, lat2])
+
+    # haversine formula
+    dlon = lon2 - lon1
+    dlat = lat2 - lat1
+    a = sin(dlat / 2) ** 2 + cos(lat1) * cos(lat2) * sin(dlon / 2) ** 2
+    c = 2 * asin(sqrt(a))
+    r = 6371  # Radius of earth in kilometers. Use 3956 for miles
+    return c * r
+
+
 def add_users():
-    for person in PRODUCT_LISTINGS:
+    for person in USERS:
         print("Adding", person)
-        user = User(name=person)
+        user = User(name=person["name"],
+                    age=person["age"],
+                    sex=person["sex"],
+                    country=person["country"],
+                    city=person["city"],
+                    haversine_distance=haversine(person["longitude"], person["latitude"])
+                    )
+
         session.add(user)
 
     session.commit()
