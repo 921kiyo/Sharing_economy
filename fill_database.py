@@ -46,7 +46,8 @@ def add_charities():
     for charity in CHARITY_INFO:
 
         c = Charity(name=charity["name"],
-                    mission=charity["mission"])
+                    mission=charity["mission"],
+                    url=charity["url"])
 
         if charity.get("url") is not None and charity.get("url") != "":
             c.url = charity["url"]
@@ -63,6 +64,9 @@ if __name__ == "__main__":
 
     print("Adding products")
     add_products()
+
+    print("Adding charities")
+    add_charities()
 
 
 

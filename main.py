@@ -40,19 +40,12 @@ def home():
 def user_home(user_id):
     """
     Returns product listings for user homepage. Applies the donate.
-
     :return:
     """
-
-    if request.method == "GET":
-        # Returns the list of products by the user
-        user_products = session.query(Product).filter_by(user_id=user_id)
-        all_charities = session.query(Charity).all()
-        return render_template("/index.html", products=user_products, charities=all_charities)
-
+    # UPDATE donation
     if request.method == "POST":
         # Updates donation
-        charity_id = request.form["charity_id"]
+        charity_id = request.form["charity_radio"]
         user = session.query(User).filter_by(id=user_id).first()
         charity = session.query(Charity).filter_by(id=charity_id).first()
 
@@ -66,8 +59,14 @@ def user_home(user_id):
             user.charity_id = charity_id
             charity.num_donators = charity.num_donators + 1
             flash('Thank you for much for helping our charity partner!!', 'success')
-
         session.commit()
+
+    # Returns the list of products by the user
+    user_products = session.query(Product).filter_by(user_id=user_id)
+    all_charities = session.query(Charity).all()
+    print("ALL CHARITY ", all_charities)
+    user = session.query(User).filter_by(id=user_id).first()
+    return render_template("/user.html", products=user_products, user=user, charities=all_charities)
 
 @app.route("/charity")
 @app.route("/charity/<int:charity_id>")
@@ -92,11 +91,12 @@ def show_product(product_id):
     :return: json
     """
     product = session.query(Product).filter_by(id=product_id).first()
+    seller = session.query(User).filter_by(id=product.user_id).first()
     # if product is None:
     #     return jsonify(output=False, error="Product does not exist")  #TODO: Confirm format
     # product = jsonify(output=product.serialize)
 
-    return render_template("product.html", product=product)
+    return render_template("product.html", product=product, seller=seller)
     
 
 @app.route("/buy/<int:product_id>", methods=["POST"])
@@ -138,6 +138,7 @@ if __name__ == '__main__':
     # Populate the product
     fill_database.add_users()
     fill_database.add_products()
+    fill_database.add_charities()
 
     app.secret_key = 'secret'
     app.debug = True
