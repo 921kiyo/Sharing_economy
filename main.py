@@ -1,6 +1,9 @@
 # GLOBALS
 from GLOBALS import PRODUCT_LISTINGS, CHARITY_INFO, DATABASE_URL
 
+# Populate database
+import fill_database
+
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from models import Base, User, Product
@@ -137,6 +140,11 @@ def buy_product(product_id):
 
 
 if __name__ == '__main__':
+
+    # Populate the product
+    fill_database.add_products()
+    fill_database.add_users()
+
     app.secret_key = 'secret'
     app.debug = True
     app.run(host='0.0.0.0', port=5000)
