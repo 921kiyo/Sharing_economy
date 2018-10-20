@@ -14,8 +14,8 @@
     <script src="main.js"></script>
 </head>
 <body>
-   
     <div class="container-fluid">
+        {% include "flash-message.html" %}
         <div class="row">
             {% block content %}{% endblock %}
         </div>	
