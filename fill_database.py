@@ -1,9 +1,9 @@
 
-from GLOBALS import DATABASE_URL, PRODUCT_LISTINGS
+from GLOBALS import DATABASE_URL, PRODUCT_LISTINGS, CHARITY_INFO
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from models import Base, Product, User
+from models import Base, Product, User, Charity
 
 engine = create_engine(DATABASE_URL)
 Base.metadata.bind = engine
@@ -38,6 +38,20 @@ def add_products():
                         )
 
             session.add(p)
+
+    session.commit()
+
+
+def add_charities():
+    for charity in CHARITY_INFO:
+
+        c = Charity(name=charity["name"],
+                    mission=charity["mission"])
+
+        if charity.get("url") is not None and charity.get("url") != "":
+            c.url = charity["url"]
+
+        session.add(c)
 
     session.commit()
 
