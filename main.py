@@ -28,8 +28,6 @@ def home():
     :return:
     """
     products = session.query(Product).all()
-
-    # TODO: Change html
     return render_template("/index.html", outputs=products)
 
 
@@ -93,12 +91,11 @@ def show_product(product_id):
     # if product is None:
     #     return jsonify(output=False, error="Product does not exist")  #TODO: Confirm format
     # product = jsonify(output=product.serialize)
-    
-    return jsonify(outputs=product)
-    # return render_template("product.html", product=product)
+
+    return render_template("product.html", product=product)
     
 
-@app.route("/buy")
+@app.route("/buy/<int:product_id>", methods=["POST"])
 def buy_product(product_id):
     """
     Implements the buy product functionality. If a donation has been applied will take 3% of the price and put it towards
@@ -119,8 +116,13 @@ def buy_product(product_id):
 
     if user.donating:
         # Donate 3% of total price (product + shipping)
-        user.total_donated = user.total_donated + (product.price + product.shipping) * CONTRIBUTION_PERC
-        print("Total donated to date is", user.total_donated)
+        donation = (product.price + product.shipping) * CONTRIBUTION_PERC
+        user.total_donated = user.total_donated + donation
+
+        charity = session.query(Charity).filter_by(id=user.charity_id).first()
+        charity.amount_raised = charity.amount_raised + donation
+
+        print("Total donated to date is", user.total_donated, "to", charity.name)
 
     session.commit()
 

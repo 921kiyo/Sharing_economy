@@ -53,10 +53,14 @@ PRODUCT_LISTINGS = {
 
 CHARITY_INFO = [
     {
-        "name": "Cherry Blossom Fund",
-        "media": "enter url",
-        "funds_raised": 0,
-        "charity_url": ""
+        "name": "Against Malaria Foundation",
+        "mission": "We help protect people from malaria. We fund anti-malaria nets, specifically long-lasting insecticidal nets (LLINs), and work with distribution partners to ensure they are used. We track and report on net use and malaria case data.",
+        "charity_url": "https://www.againstmalaria.com/default.aspx"
+    },
+    {
+        "name": "Bill & Melinda Gates Foundation",
+        "mission": "We seek to unlock the possibility inside every individual. We see equal value in all lives. And so we are dedicated to improving the quality of life for individuals around the world. From the education of students in Chicago, to the health of a young mother in Nigeria, we are catalysts of human promise everywhere.",
+        "charity_url": "https://www.gatesfoundation.org"
     }
 ]
 
