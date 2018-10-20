@@ -96,7 +96,6 @@ def user_product(user_id):
                                 image=request.form["image"],
                                 price=request.form["price"],
                                 condition=request.form["condition"],
-                                category=request.form["category"]
         )
 
         if request.form["size"]:

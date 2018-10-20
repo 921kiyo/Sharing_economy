@@ -14,7 +14,6 @@ class User(Base):
 
     id = Column(Integer, primary_key=True, unique=True)
     name = Column(String(250), nullable=False)
-    # email = Column(String(250), nullable=False)
     # picture = Column(String(250))
     donating = Column(Boolean, default=False)
     total_donated = Column(Float, default=0)
@@ -37,15 +36,14 @@ class Product(Base):
     __tablename__ = 'product'
 
     id = Column(Integer, primary_key=True)
-    name = Column(String(250), nullable=False, unique=True)
+    name = Column(String(250), nullable=False)
     user_id = Column(Integer, ForeignKey('user.id'))
     description = Column(String(250))
     image = Column(String(250), nullable=False)
     price = Column(Float, nullable=False)
-    category = Column(String(250), nullable=False)
     condition = Column(String(10), nullable=False)  #
     size = Column(String(10), nullable=True)
-    shipping=Column(Float, default=0)
+    shipping = Column(Float, default=0)
     sold = Column(Boolean, default=False)
 
     @property
