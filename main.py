@@ -22,7 +22,6 @@ DBSession = sessionmaker(bind=engine)
 # session = DBSession()
 session = flask_scoped_session(sessionmaker(bind=engine))
 
-
 @app.route("/")
 def home():
     # """
@@ -33,7 +32,7 @@ def home():
     products = session.query(Product).all()
 
     # # TODO: Change html
-    return render_template("/index.html", outputs=products)
+    return render_template("/index.html", products=products)
 
 
 @app.route("/user/<int:user_id>", methods=["GET", "POST"])
