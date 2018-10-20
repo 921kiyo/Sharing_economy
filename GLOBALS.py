@@ -47,11 +47,13 @@ PRODUCT_LISTINGS = {
 }
 
 
-CHARITY_INFO = {
-    "name": "Cherry Blossom Fund",
-    "media": "enter url",
-    "funds_raised": 0,
-    "charity_url": ""
-}
+CHARITY_INFO = [
+    {
+        "name": "Cherry Blossom Fund",
+        "media": "enter url",
+        "funds_raised": 0,
+        "charity_url": ""
+    }
+]
 
 

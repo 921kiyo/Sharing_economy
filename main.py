@@ -19,6 +19,7 @@ Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
+
 @app.route("/")
 def home():
     """
@@ -42,36 +43,41 @@ def user_home(user_id):
 
     if request.method == "GET":
         # Returns the list of products by the user
-        all_products = session.query(Product).filter_by(user_id=user_id)
-        return render_template("/index.html", outputs=all_products)
+        user_products = session.query(Product).filter_by(user_id=user_id)
+        all_charities = session.query(Charity).all()
+        return render_template("/index.html", products=user_products, charities=all_charities)
 
     if request.method == "POST":
         # Updates donation
+        charity_id = request.form["charity_id"]
         user = session.query(User).filter_by(id=user_id).first()
-        user.donating = not user.donating
+        charity = session.query(Charity).filter_by(id=charity_id).first()
+
+        # Toggled Off / On
+        if charity_id is None:
+            user.donating = False
+            charity_id.num_donators = charity.num_donators - 1
+            flash("sad", "failure")
+        else:
+            user.donating = True
+            user.charity_id = charity_id
+            charity.num_donators = charity.num_donators + 1
+            flash('Thank you for much for helping our charity partner!!', 'success')
+
         session.commit()
 
-        if user.donating:
-            flash('Thank you for much for helping our charity partner!!', 'success')
-        else:
-            flash("sad", "failure")
-
-    # return render_template("/index.html", outputs=PRODUCT_LISTINGS)
-
-
-@app.route("/catalog/tshirts")
-def show_catalog():
-    pass
-
-
+@app.route("/charity")
 @app.route("/charity/<int:charity_id>")
-def charity_home(charity_id):
+def charity_home(charity_id=None):
     """
     Returns the details of the charity.
 
     :return: dependent on request
     """
-    # Assumes data is available in the database
+
+    if charity_id is None:
+        return jsonify(outputs=session.query(Charity).all())
+    
     charity = session.query(Charity).filter_by(charity_id).first()
     return jsonify(outputs=charity)
 
