@@ -12,17 +12,12 @@ Base = declarative_base()
 class User(Base):
     __tablename__ = 'user'
 
-    id = Column(Integer, primary_key=True, unique=True)
+    id = Column(Integer, primary_key=True)
     name = Column(String(250), nullable=False)
-    # picture = Column(String(250))
     donating = Column(Boolean, default=False)
     total_donated = Column(Float, default=0)
     products = relationship("Product")
-    # charity_donating = relationship("Charity")
-
-
-    # def __repr__(self):
-
+    charity_donating = relationship("Charity")
 
     @property
     def serialize(self):
@@ -59,6 +54,29 @@ class Product(Base):
             "description": self.description,
             "price": self.price
         }
+
+
+class Charity(Base):
+    __tablename__ = 'charity'
+
+    id = Column(Integer, primary_key=True)
+    name = Column(String(25), nullable=False)
+    mission = Column(String(500), nullable=False)
+    url = Column(String(100), nullable=True)
+    amount_raised = Column(Float, default=0)
+    num_donators = Column(Integer, default=0)
+
+    @property
+    def serialize(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "mission": self.mission,
+            "url": self.url,
+            "amount_raised": self.amount_raised,
+            "num_donators": self.num_donators,
+        }
+
 
 engine = create_engine(DATABASE_URL)
 Base.metadata.drop_all(engine)

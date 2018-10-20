@@ -1,12 +1,12 @@
 # GLOBALS
-from GLOBALS import PRODUCT_LISTINGS, CHARITY_INFO, DATABASE_URL
+from GLOBALS import DATABASE_URL, CONTRIBUTION_PERC
 
 # Populate database
 import fill_database
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from models import Base, User, Product
+from models import Base, User, Product, Charity
 
 from flask import Flask, render_template, url_for, redirect, request \
     , flash, jsonify, make_response, session as login_session
@@ -26,7 +26,10 @@ def home():
 
     :return:
     """
-    return render_template("/index.html", outputs=PRODUCT_LISTINGS)
+    products = session.query(Product).all()
+
+    # TODO: Change html
+    return render_template("/index.html", outputs=products)
 
 
 @app.route("/user/<int:user_id>", methods=["GET", "POST"])
@@ -42,7 +45,6 @@ def user_home(user_id):
         all_products = session.query(Product).filter_by(user_id=user_id)
         return render_template("/index.html", outputs=all_products)
 
-
     if request.method == "POST":
         # Updates donation
         user = session.query(User).filter_by(id=user_id).first()
@@ -54,75 +56,39 @@ def user_home(user_id):
         else:
             flash("sad", "failure")
 
-
-    return render_template("/index.html", outputs=PRODUCT_LISTINGS)
-    # foo = jsonify(PRODUCT_LISTINGS)
-    # return jsonify(outputs=foo)
-
+    # return render_template("/index.html", outputs=PRODUCT_LISTINGS)
 
 
 @app.route("/catalog/tshirts")
 def show_catalog():
     pass
 
-@app.route("/charity", methods=["GET"])
-def charity_home():
-    """
-    Returns the details of the charity. These include:
 
-    Video / IMAGE
-    Description of cause
-    total funds raised
+@app.route("/charity/<int:charity_id>")
+def charity_home(charity_id):
+    """
+    Returns the details of the charity.
 
     :return: dependent on request
     """
-
     # Assumes data is available in the database
-    # TODO: Error handling
-    if request.method == "GET":
-        return jsonify(output=CHARITY_INFO)
+    charity = session.query(Charity).filter_by(charity_id).first()
+    return jsonify(outputs=charity)
 
 
-# TODO: Confirm the structure
-@app.route("/user<int:user_id>/product/", methods=['GET', 'POST'])
-def user_product(user_id):
+@app.route("/product/<int:product_id>")
+def user_product(product_id):
     """
     Gets product detail on the user page, posts a new product
 
     :return: json
     """
 
-    if request.method == "GET":
-        product_id = request.params.get("product_id")
-        product = session.query(Product).filter_by(id=product_id).first()
-        if product is None:
-            return jsonify(output=False, error="Product does not exist")  #TODO: Confirm format
+    product = session.query(Product).filter_by(id=product_id).first()
+    if product is None:
+        return jsonify(output=False, error="Product does not exist")  #TODO: Confirm format
 
-        return jsonify(output=product)
-
-    elif request.method == "POST":
-        new_product = Product(name=request.form["name"],
-                                user_id=user_id,
-                                description=request.form["description"],
-                                image=request.form["image"],
-                                price=request.form["price"],
-                                condition=request.form["condition"],
-                                category=request.form["category"]
-        )
-
-        if request.form["size"]:
-            new_product.size = request.form["size"]
-
-        if request.form["shipping"]:
-            new_product.shipping = request.form["shipping"]
-
-        session.add(new_product)
-        session.commit()
-
-        print("New product added")
-
-        product = session.query(Product).filter_by(name=request.form["name"])
-        return jsonify(output=product.id)
+    return jsonify(output=product)
 
 @app.route("/product/<int:product_id>")
 def show_product(product_id):
@@ -142,7 +108,6 @@ def show_product(product_id):
     return render_template("item.html", product=product)
     
 
-
 @app.route("/buy")
 def buy_product(product_id):
     """
@@ -152,7 +117,6 @@ def buy_product(product_id):
     :return: Void
     """
 
-    contribution_perc = 0.03
     product = session.query(Product).filter_by(id=product_id).first()
 
     if product.sold:
@@ -165,7 +129,7 @@ def buy_product(product_id):
 
     if user.donating:
         # Donate 3% of total price (product + shipping)
-        user.total_donated = user.total_donated + (product.price + product.shipping) * contribution_perc
+        user.total_donated = user.total_donated + (product.price + product.shipping) * CONTRIBUTION_PERC
         print("Total donated to date is", user.total_donated)
 
     session.commit()
