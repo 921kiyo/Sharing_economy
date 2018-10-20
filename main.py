@@ -1,6 +1,9 @@
 # GLOBALS
 from GLOBALS import PRODUCT_LISTINGS, CHARITY_INFO, DATABASE_URL
 
+# Populate database
+import fill_database
+
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from models import Base, User, Product
@@ -16,39 +19,47 @@ Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
-
-@app.route("/", methods=["GET", "POST"])
-def user_home():
+@app.route("/")
+def home():
     """
-    Returns product listings for user homepage
+    Mercari all products homepage
+
+    :return:
+    """
+    return render_template("/index.html", outputs=PRODUCT_LISTINGS)
+
+
+@app.route("/user/<int:user_id>", methods=["GET", "POST"])
+def user_home(user_id):
+    """
+    Returns product listings for user homepage. Applies the donate.
 
     :return:
     """
 
+    if request.method == "GET":
+        # Returns the list of products by the user
+        all_products = session.query(Product).filter_by(user_id=user_id)
+        print(all_products)
+
+
     if request.method == "POST":
-        # Updating user donation column
-        # user_id = 1 # TODO delete 
-        # user = session.query(User).filter_by(id=user_id).one()
-        # user.donating = True
-        # session.add(user)
-        # session.commit()
-        flash('Thank you for much for helping our charity partner!!', 'success')
+        # Updates donation
+        user = session.query(User).filter_by(id=user_id).first()
+        user.donating = not user.donating
+        session.commit()
+
+        if user.donating:
+            flash('Thank you for much for helping our charity partner!!', 'success')
+        else:
+            flash("sad", "failure")
+
 
     return render_template("/index.html", outputs=PRODUCT_LISTINGS)
     # foo = jsonify(PRODUCT_LISTINGS)
     # return jsonify(outputs=foo)
-    
 
-@app.route("/donate")
-def apply_donation():
-    """
-    Updates the user's 'donating' status in the user database table
 
-    :return:
-    """
-
-    # Update database
-    pass
 
 @app.route("/catalog/tshirts")
 def show_catalog():
@@ -163,6 +174,11 @@ def buy_product(product_id):
 
 
 if __name__ == '__main__':
+
+    # Populate the product
+    fill_database.add_users()
+    fill_database.add_products()
+
     app.secret_key = 'secret'
     app.debug = True
     app.run(host='0.0.0.0', port=5000)
