@@ -1,8 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="container-fluid">
-	<div class="row">
-        {{hello}}
+	{% for output in outputs["products"] %}
+	<div class="col-sm-3">
+	<img src="{{ output['url'] }}" alt="later", height="100", width="100">
+	{{output['price']}}
+	</div>
+	{% endfor %}
 	</div>
 </div>
 {% endblock %}

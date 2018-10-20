@@ -15,7 +15,10 @@ def user_home():
     """
 
     print(PRODUCT_LISTINGS)
-    return jsonify(data=PRODUCT_LISTINGS)
+    return render_template("/index.html", outputs=PRODUCT_LISTINGS)
+    # foo = jsonify(PRODUCT_LISTINGS)
+    # return jsonify(outputs=foo)
+    
 
 
 @app.route("/donate")
