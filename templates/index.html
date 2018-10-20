@@ -24,54 +24,50 @@
 		</button>
 		</div>
 		<div class="modal-body">
-		<form>
-		<p>The form below contains three checkboxes. The last option is disabled:</p>
-		<form>
-			<div class="form-check">
-				<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-				<label class="form-check-label" for="exampleRadios1" data-target="#charity1" >
-					Charity1
-				</label>
-				<div id="charity1" class="collapse">
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-					sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-				</div>		
-			</div>
-			<div class="form-check">
-				<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-				<label class="form-check-label" for="exampleRadios2" data-target="#charity2" >
-					Charity2
-				</label>
+			<p>The form below contains three checkboxes. The last option is disabled:</p>
+			<form action="{{url_for('user_home')}}" method="post">
+				<div class="form-check">
+					<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+					<label class="form-check-label" for="exampleRadios1" data-target="#charity1" >
+						Charity1
+					</label>
+					<div id="charity1" class="collapse">
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+						sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+					</div>		
+				</div>
+				<div class="form-check">
+					<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+					<label class="form-check-label" for="exampleRadios2" data-target="#charity2" >
+						Charity2
+					</label>
+				</div>
 				<div id="charity2" class="collapse">
 					Lorem ipsum dolor sit amet, consectetur adipisicing elit,
 					sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 				</div>
-			</div>
-			<div class="form-check">
-				<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3">
-				<label class="form-check-label" for="exampleRadios3" data-target="#charity3" >
-					Charity3
-				</label>
-				<div id="charity3" class="collapse">
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-					sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+				<div class="form-check">
+					<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3">
+					<label class="form-check-label" for="exampleRadios3" data-target="#charity3" >
+						Charity3
+					</label>
+					<div id="charity3" class="collapse">
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+						sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+					</div>
 				</div>
-			</div>
-		</form>
-		</form>
-		</div>
-		<div class="modal-footer">
-		<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-		<button type="button" class="btn btn-primary">Send message</button>
-		</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="button submit" class="btn btn-primary">Apply donation</button>
+				</div>
+			</form>
 		</div>
 	</div>
-	</div>
-			
-	
+	</div>	
 </div>
 </div>
 
