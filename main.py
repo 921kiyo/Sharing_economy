@@ -11,8 +11,11 @@ from models import Base, User, Product, Charity
 from flask import Flask, render_template, url_for, redirect, request \
     , flash, jsonify, make_response, session as login_session
 
+from flask_sqlalchemy_session import flask_scoped_session
+
 import pandas as pd
 from math import radians, cos, sin, asin, sqrt
+
 
 app = Flask(__name__)
 
@@ -20,7 +23,8 @@ engine = create_engine(DATABASE_URL)
 Base.metadata.bind = engine
 
 DBSession = sessionmaker(bind=engine)
-session = DBSession()
+# session = DBSession()
+session = flask_scoped_session(sessionmaker(bind=engine))
 
 
 @app.route("/")
@@ -40,34 +44,37 @@ def home():
 def user_home(user_id):
     """
     Returns product listings for user homepage. Applies the donate.
-
     :return:
     """
-
-    if request.method == "GET":
-        # Returns the list of products by the user
-        user_products = session.query(Product).filter_by(user_id=user_id)
-        all_charities = session.query(Charity).all()
-        return render_template("/index.html", products=user_products, charities=all_charities)
-
+    # UPDATE donation
     if request.method == "POST":
         # Updates donation
-        charity_id = request.form["charity_id"]
+        
         user = session.query(User).filter_by(id=user_id).first()
-        charity = session.query(Charity).filter_by(id=charity_id).first()
-
         # Toggled Off / On
-        if charity_id is None:
-            user.donating = False
-            charity_id.num_donators = charity.num_donators - 1
-            flash("sad", "failure")
-        else:
+        if "charity_radio" in request.form:
+            charity_id = request.form["charity_radio"]
+            user = session.query(User).filter_by(id=user_id).first()
+            charity = session.query(Charity).filter_by(id=charity_id).first()
+
             user.donating = True
             user.charity_id = charity_id
-            charity.num_donators = charity.num_donators + 1
+            # charity.num_donators = charity.num_donators + 1
             flash('Thank you for much for helping our charity partner!!', 'success')
 
+        else:
+            charity = session.query(Charity).filter_by(id=user.charity_id).first()
+            user.donating = False
+            # charity_id.num_donators = charity.num_donators - 1
+            flash("Sad you are leaving the donation", "error")            
         session.commit()
+
+    # Returns the list of products by the user
+    user_products = session.query(Product).filter_by(user_id=user_id)
+    all_charities = session.query(Charity).all()
+    print("ALL CHARITY ", all_charities)
+    user = session.query(User).filter_by(id=user_id).first()
+    return render_template("/user.html", products=user_products, user=user, charities=all_charities)
 
 @app.route("/charity")
 @app.route("/charity/<int:charity_id>")
@@ -92,11 +99,12 @@ def show_product(product_id):
     :return: json
     """
     product = session.query(Product).filter_by(id=product_id).first()
+    seller = session.query(User).filter_by(id=product.user_id).first()
     # if product is None:
     #     return jsonify(output=False, error="Product does not exist")  #TODO: Confirm format
     # product = jsonify(output=product.serialize)
 
-    return render_template("product.html", product=product)
+    return render_template("product.html", product=product, seller=seller)
     
 
 @app.route("/buy/<int:product_id>", methods=["POST"])
@@ -107,7 +115,6 @@ def buy_product(product_id):
 
     :return: Void
     """
-
     product = session.query(Product).filter_by(id=product_id).first()
 
     if product.sold:
@@ -129,9 +136,10 @@ def buy_product(product_id):
         print("Total donated to date is", user.total_donated, "to", charity.name)
 
     session.commit()
+    flash('Purchase complete. Thank you so much!', 'success')
 
-    return jsonify(output=True)
-
+    products = session.query(Product).all()
+    return render_template("/index.html", outputs=products)
 
 def get_demographic_similarity(df, user_id):
     # Scale columns
@@ -188,6 +196,7 @@ if __name__ == '__main__':
     # Populate the product
     fill_database.add_users()
     fill_database.add_products()
+    fill_database.add_charities()
 
     app.secret_key = 'secret'
     app.debug = True

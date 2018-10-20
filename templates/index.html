@@ -1,85 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="row">
-<div class="col-md-3">
-</div>
-<div class="col-md-3">
-</div>
-<div class="col-md-3">
-</div>
-<div class="col-md-3">
-	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-		Launch demo modal
-	</button>
-					
-	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="" role="document">
-	<!-- <div class="modal-dialog" role="document"> -->
-		<div class="modal-content">
-		<div class="modal-header">
-		<h5 class="modal-title" id="exampleModalLabel">Donation </h5>
-		<p>By selecting a charity, 3% of the total price will go to the charity you select</p>
-		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-		<span aria-hidden="true">&times;</span>
-		</button>
-		</div>
-		<div class="modal-body">
-			<p>The form below contains three checkboxes. The last option is disabled:</p>
-			<form action="{{url_for('home')}}" method="post">
-				<div class="form-check">
-					<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-					<label class="form-check-label" for="exampleRadios1" data-target="#charity1" >
-						Charity1
-					</label>
-					<div id="charity1" class="collapse">
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-						sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-					</div>		
-				</div>
-				<div class="form-check">
-					<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-					<label class="form-check-label" for="exampleRadios2" data-target="#charity2" >
-						Charity2
-					</label>
-				</div>
-				<div id="charity2" class="collapse">
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-					sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-				</div>
-
-				<div class="form-check">
-					<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3">
-					<label class="form-check-label" for="exampleRadios3" data-target="#charity3" >
-						Charity3
-					</label>
-					<div id="charity3" class="collapse">
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-						sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-					<button type="button submit" class="btn btn-primary">Apply donation</button>
-				</div>
-			</form>
-		</div>
-	</div>
-	</div>	
-</div>
-</div>
-
-
 
 <div class="row">
-	{% for output in outputs %}
+	{% for product in products %}
 	<div class="col-sm-4">
 		<div class="panel panel-primary">
-		<div class="panel-heading">{{output.name}}</div>
-		<div class="panel-body"><img src="{{ output.image}}" class="img-responsive" style="width:100%" alt="Image"></div>
-		<div class="panel-footer">$ {{output.price}}</div>
+		<a href="{{url_for('show_product', product_id=product.id)}}">
+			<div class="panel-heading">{{product.name}}</div>
+		</a>
+		<div class="panel-body"><img src="{{ product.image}}" class="img-responsive" style="width:100%" alt="Image"></div>
+		<div class="panel-footer">$ {{product.price}}</div>
 		</div>
 	</div>
 	{% endfor %}

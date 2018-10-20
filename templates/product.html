@@ -1,6 +1,23 @@
 {% extends "base.html" %}
 {% block content %}
-    <div>
-        {{product.name}}
+    <div class="col-sm-6">
+        <div class="panel panel-primary">
+        <div class="panel-body"><img src="{{ product.image}}" class="img-responsive" style="width:100%" alt="Image"></div>
+        </div>
+	</div>
+    <div class="col-sm-6 text-left"> 
+      <h1>{{product.name}}</h1>
+      <hr>
+      <h3>Description</h3>
+      <p>{{product.description}}</p>
+      <p><b>Size:</b> {{product.size}}</p>
+      <p><b>Shipping_cost:</b> {{product.shipping_cost}}</p>
+      <p><b>Price:</b> {{product.price}}</p>
+      <p><b>Shipping_cost:</b> {{product.condition}}</p>      
+	  <p><b>Seller:</b> <a href="{{url_for('user_home', user_id=seller.id)}}">{{seller.name}}</a></p>
+      <p><b>Donation</b> XXX</p>
+      <form action="{{url_for('buy_product', product_id=product.id)}}" method="post">
+        <button type="submit" class="btn btn-primary">Purchase</button>
+      </form>
     </div>
 {% endblock %}

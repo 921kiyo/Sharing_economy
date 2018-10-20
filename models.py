@@ -23,7 +23,7 @@ class User(Base):
     total_donated = Column(Float, default=0)
     monthly_donations = Column(Float, default=0)
     products = relationship("Product")
-    charity_donating = Column(Integer, nullable=True)
+    charity_id = Column(Integer, nullable=True)
 
     @property
     def serialize(self):
