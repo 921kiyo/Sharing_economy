@@ -4,6 +4,7 @@ CONDITION = {
     2: "great"
 }
 
+DATABASE_URL = 'sqlite:///user_product_data.db'
 
 PRODUCT_LISTINGS = {
 

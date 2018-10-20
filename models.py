@@ -1,6 +1,9 @@
 import os
 import sys
-from sqlalchemy import Column, ForeignKey, Integer, String, Text, create_engine
+
+from GLOBALS import DATABASE_URL
+
+from sqlalchemy import Column, ForeignKey, Integer, String, Text, create_engine, Boolean, Float, ARRAY
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 
@@ -9,57 +12,52 @@ Base = declarative_base()
 class User(Base):
     __tablename__ = 'user'
 
-    id = Column(Integer, primary_key=True)
+    id = Column(Integer, primary_key=True, unique=True)
     name = Column(String(250), nullable=False)
-    email = Column(String(250), nullable=False)
-    picture = Column(String(250))
+    # email = Column(String(250), nullable=False)
+    # picture = Column(String(250))
+    donating = Column(Boolean, default=False)
+    total_donated = Column(Float, default=0)
+    products = relationship("Product")
+    # charity_donating = relationship("Charity")
 
     @property
     def serialize(self):
       return{
-          'name': self.name,
-          'email': self.email,
-          'picture': self.picture
+          "id": self.id,
+          "name": self.name,
+          "donating": self.donating,
+          "total_donated": self.total_donated
+          # 'email': self.email,
+          # 'picture': self.picture
       }
 
-class Genre(Base):
-    __tablename__ = 'genre'
+
+class Product(Base):
+    __tablename__ = 'product'
 
     id = Column(Integer, primary_key=True)
-    name = Column(String(250), nullable=False)
-
+    name = Column(String(250), nullable=False, unique=True)
     user_id = Column(Integer, ForeignKey('user.id'))
-    user = relationship(User)
+    description = Column(String(250))
+    image = Column(String(250), nullable=False)
+    price = Column(Float, nullable=False)
+    category = Column(String(250), nullable=False)
+    condition = Column(String(10), nullable=False)  #
+    size = Column(String(10), nullable=True)
+    shipping=Column(Float, default=0)
+    sold = Column(Boolean, default=False)
 
     @property
     def serialize(self):
-      return{
-          'name': self.name,
-          'id': self.id
-      }
+        return {
+            "id": self.id,
+            "name": self.name,
+            "user_id": self.user_id,
+            "description": self.description,
+            "price": self.price
+        }
 
-class Article(Base):
-    __tablename__ = 'article'
-
-    id = Column(Integer, primary_key=True)
-    title = Column(String(250), nullable=False)
-    # date = Column(Integer, primary_key=True)
-    body = Column(Text, nullable=False)
-
-    user_id = Column(Integer, ForeignKey('user.id'))
-    user = relationship(User)
-
-    genre_id = Column(Integer, ForeignKey('genre.id'))
-    genre = relationship(Genre)
-
-    @property
-    def serialize(self):
-      return{
-          'title': self.title,
-          'body': self.body,
-          'id': self.id
-      }
-
-engine = create_engine('sqlite:///genrearticlewithusers.db')
+engine = create_engine(DATABASE_URL)
 Base.metadata.drop_all(engine)
 Base.metadata.create_all(engine)
