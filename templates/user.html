@@ -5,7 +5,7 @@
     <div class="row">
         {% for product in products %}
         <div class="col-sm-4">
-            <div class="panel panel-primary">
+            <div class="panel panel-default">
             <a href="{{url_for('show_product', product_id=product.id)}}">
                 <div class="panel-heading">{{product.name}}</div>
             </a>
@@ -40,17 +40,25 @@
 
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-<div class="" role="document">
-<!-- <div class="modal-dialog" role="document"> -->
+<!-- <div class="" role="document"> -->
+<div class=" modal-dialog-centered" role="document">
 <div class="modal-content">
 <div class="modal-header">
-<h5 class="modal-title" id="exampleModalLabel">Donation </h5>
+<h2 class="modal-title" id="exampleModalLabel">We Recommend {{recommend_charity.name}}</h2>
 <p>By selecting a charity, 3% of the total price will go to the charity you select</p>
 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 <span aria-hidden="true">&times;</span>
 </button>
 </div>
 <div class="modal-body">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <img src="{{url_for('static', filename='logo/recommend_charity.url')}}" style="width:50px; height:50px;" alt="Italian Trulli">
+            </div>
+            <div class="col-md-6">{{recommend_charity.mission}} ZZZ</div>
+        </div>
+    </div>
     <p>The form below contains three checkboxes. The last option is disabled:</p>
     <form action="{{url_for('user_home', user_id=user.id)}}" method="post">
         {% for charity in charities %}
@@ -63,20 +71,7 @@
                     {{charity.mission}}
                 </div>
             </div>
-        {% endfor %}
-        {% if recommend_charity %}
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="charity_radio" id="exampleRadios1" value="{{recommend_charity.id}}">
-            <label class="form-check-label" for="exampleRadios1" data-target="#charity1" >
-                {{recommend_charity.name}}
-                <!--Recommended!-->
-            </label>
-            <div id="charity1" class="collapse">
-                {{recommend_charity.mission}}
-            </div>
-        </div>
-        {% endif %}
-        
+        {% endfor %}        
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             <button type="button submit" class="btn btn-primary">Donate</button>
