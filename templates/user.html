@@ -28,7 +28,7 @@
             <td>Lifetime Donations:</td>
             <td>${{user.total_donated}}</td>
             </tr>
-            {% if donated %}
+            {% if user.donating %}
             <tr>
             <td>Donating To:</td>
             <td>{{donated.name}}</td>
