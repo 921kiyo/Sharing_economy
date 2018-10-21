@@ -69,10 +69,10 @@ PRODUCT_LISTINGS = {
             "description": "Fashioned from the Kinloch Anderson 1925 “Travelling Ulster” this classic pea coat has been adapted for modern living and is made from the finest 100% Wool Melton cloth. "
                            "This jacket is beautifully finished with complementing Kinloch Anderson satin lining and beautiful silk Kinloch Anderson Tartan piping on the inside. "
                            "The coat benefits from two front flap pockets lined with Kinloch Anderson silk tartan and two internal chest pockets. The front can be buttoned to the neck or left open and complemented with a cashmere scarf for blustery weather. ",
-            "price": 201,  # Dollars
+            "price": 201.00,  # Dollars
             "condition": "Good",
             "size": "L",
-            "shipping_cost": 4
+            "shipping_cost": 4.00
         },
         {
             "id": 2,
@@ -83,20 +83,20 @@ PRODUCT_LISTINGS = {
                            "Pair this shirt with one of our denim aprons for a popular double-denim look, or coordinate with black skinny jeans and sneakers. "
                            "The medium-wash fabric is super soft and breathable, ensuring you remain confident and comfortable in your work wear, "
                            "while modern design features include a button down collar and contrast white buttons for a distinctive fashion edge. ",
-            "price": 10,  # Dollars
+            "price": 10.00,  # Dollars
             "condition": "New",
             "size": "L",
-            "shipping_cost": 0
+            "shipping_cost": 0.00
         },
         {
             "id": 3,
             "name": "Me on a T-shirt",
             "url": "img3",
             "description": "Tight fit v-neck, light blue T-shirt with a black and white portrait of me and my name emblazoned underneath. 100% cotton t-shirt. Excellent printing quality.",
-            "price": 6,  # Dollars
+            "price": 6.00,  # Dollars
             "condition": "New",
             "size": "XL",
-            "shipping_cost": 1
+            "shipping_cost": 1.00
         },
     ],
     "Albert Einstein": [
@@ -106,10 +106,10 @@ PRODUCT_LISTINGS = {
             "url": "img4",
             "description": "Mens Tweed Check Vintage 3 Piece Suit. Complete With Blazer, Trouser & Waistcoat polyester blend. Textured Tweed Material with Velvet Trim, Fitted Design. "
                            "Great For Smart Formal Occasions Weddings, Parties, Proms.",
-            "price": 209.99,  # Dollars
+            "price": 210.00,  # Dollars
             "condition": "Like New",
             "size": "M",
-            "shipping_cost": 10
+            "shipping_cost": 10.00
         },
         {
             "id": 5,
@@ -120,7 +120,7 @@ PRODUCT_LISTINGS = {
             "price": 22.30,  # Dollars
             "condition": "Good",
             "size": "M",
-            "shipping_cost": 3
+            "shipping_cost": 3.00
         },
         {
             "id": 6,
@@ -128,10 +128,10 @@ PRODUCT_LISTINGS = {
             "url": "img6",
             "description": "The Barber Wool Blend Trilby Fedora Hat by Goorin Bros features a stylish monochromatic look in a rich coffee-brown tweed fabric. "
                            "Adorned with a simple self-fabric hat band outlined in contrast blue stitching, The Barber Fedora is finished with a small Goorin Bros side pin and striped fabric lining. Casual, comfortable and relaxed, The Barber is a great everyday style to rock all fall and winter long. ",
-            "price": 35,  # Dollars
+            "price": 35.00,  # Dollars
             "condition": "Poor",
             "size": "M",
-            "shipping_cost": 3
+            "shipping_cost": 3.00
         },
 
     ],
@@ -144,10 +144,10 @@ PRODUCT_LISTINGS = {
                            "This gives the helmet its exceptional changing reflection. On the top is a large round hole (tehen) edged with a curved iron plate. "
                            "Large antlers (kuwagata) and a five-piece neck-guard (shikoro) with indigo-blue cords. The fukigaeshi is decorated with an unidentified crest. "
                            "Suitable for any aspiring or seasoned warrior.",
-            "price": 300,  # Dollars
+            "price": 300.00,  # Dollars
             "condition": "Good",
             "size": "M",
-            "shipping_cost": 10
+            "shipping_cost": 10.00
         },
         {
             "id": 8,
@@ -155,10 +155,10 @@ PRODUCT_LISTINGS = {
             "url": "img8",
             "description": "These high-quality geta are made from scorched kiri (paulownia), giving them a nice aged look, with a black felt strap. "
                            "Wearing them takes a bit of getting used to but they are ideal for cosplay or just for gaining a bit of height!",
-            "price": 125,  # Dollars
+            "price": 125.00,  # Dollars
             "condition": "Poor",
             "size": "M",
-            "shipping_cost": 5
+            "shipping_cost": 5.00
         },
         {
             "id": 9,
@@ -168,11 +168,42 @@ PRODUCT_LISTINGS = {
             "price": 44.99,  # Dollars
             "condition": "Poor",
             "size": "M",
-            "shipping_cost": 7
+            "shipping_cost": 7.00
         },
+        {
+            "id": 10,
+            "name": "White T",
+            "url": "img10",
+            "description": "This t-shirt is light weight and ideal for one off promotional events such as fun runs or charity events. "
+                           "These items are suitable for t-shirt printing and transfer applications.",
+            "price": 15.00,  # Dollars
+            "condition": "Like New",
+            "size": "M",
+            "shipping_cost": 7.00
+        },
+    ],
+    "Alexander the Great": [
+        {
+            "id": 11,
+            "name": "Gold Plated Helmet",
+            "url": "img11",
+            "description": "Spartan hoplites were often depicted bearing a transverse horsehair crest on their helmet, which was possibly used to identify officers.[42] In the Archaic period, Spartans were armored with flanged bronze cuirasses, leg greaves, and a helmet, often of the Corinthian type. It is often disputed which torso armor the Spartans wore during the Persian Wars, though it seems likely they either continued to wear bronze cuirasses of a more sculptured type, or instead had adopted the linothōrax. During the later 5th century BC, when warfare had become more flexible and full-scale phalanx confrontations became rarer, the Greeks abandoned most forms of body armor. The Lacedaemonians also adopted a new tunic, the exōmis, which could be arranged so that it left the right arm and shoulder uncovered and free for action in combat",
+            "price": 2000.00,  # Dollars
+            "condition": "Like New",
+            "size": "M",
+            "shipping_cost": 10.00
+        },
+        {
+            "id": 12,
+            "name": "Grey Converse Shoes",
+            "url": "img12",
+            "description": "The Converse Chuck 70 Leather delivers a pinstripe upper with a suede tongue and patch for a look inspired by the Converse Crafted Boot.",
+            "price": 30.00,  # Dollars
+            "condition": "Good",
+            "size": "M",
+            "shipping_cost": 3.00
+        }
     ]
-
-
 }
 
 
