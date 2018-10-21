@@ -2,16 +2,25 @@
 {% block content %}
 
 <div class="row">
+	{% set counter = 0 %}
 	{% for product in products %}
 	<div class="col-sm-4">
 		<div class="panel panel-primary">
-		<a href="{{url_for('show_product', product_id=product.id)}}">
-			<div class="panel-heading">{{product.name}}</div>
-		</a>
-		<div class="panel-body"><img src="{{ product.image}}" class="img-responsive" style="width:100%" alt="Image"></div>
-		<div class="panel-footer">$ {{product.price}}</div>
+			<a href="{{url_for('show_product', product_id=product.id)}}">
+				<div class="panel-heading">{{product.name}}</div>
+			</a>
+			<div class="panel-body"><img src="{{ product.image}}" class="img-responsive" style="width:100%" alt="Image"></div>
+			{% if donates[counter] %}
+			<div class="panel-footer">
+				<img src="{{url_for('static', filename='logo/heart.jpg')}}" style="width:30px; height:30px;" alt="Italian Trulli">
+				$ {{product.price}}</div>
+			{% else %}			
+			<div class="panel-footer">
+				$ {{product.price}}</div>
+			{% endif %}			
 		</div>
 	</div>
+	{% set counter = counter + 1 %}
 	{% endfor %}
 </div>
 
