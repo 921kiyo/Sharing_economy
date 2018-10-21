@@ -5,7 +5,7 @@
 	{% for product in products %}
 	<div class="col-sm-3">
 		<div class="panel panel-default">
-			<a href="{{url_for('show_product', product_id=product.id)}}">
+			<a href="{{url_for('show_product', product_id=product.id)}}" style="color: inherit;">
 				<div class="panel-heading">{{product.name}}
 				</div> 
 			<div class="panel-body" >
