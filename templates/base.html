@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="{{url_for('static', filename='css/font-awesome.min.css')}}" />
     <script src="main.js"></script>
 </head>
+{% include "flash-message.html" %}
 <body>
     <div class="jumbotron">
         <div class="container text-center">
@@ -41,8 +42,8 @@
               <li><a href="#">Contact</a></li> -->
             </ul>
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="#"><span class="glyphicon glyphicon-user"></span> Your Account</a></li>
-              <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+              <!-- <li><a href="#"><span class="glyphicon glyphicon-user"></span> John von Neumann</a></li> -->
+              <!-- <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li> -->
             </ul>
           </div>
         </div>
@@ -50,8 +51,6 @@
       
     <!-- <div class="container-fluid"> -->
     <div class="container">
-
-        {% include "flash-message.html" %}
         <div class="row">
             {% block content %}{% endblock %}
         </div>	

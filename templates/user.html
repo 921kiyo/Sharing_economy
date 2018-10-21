@@ -23,7 +23,7 @@
         <p><b>Total Donation raised: $ {{user.total_donated}}</b></p>    
         {% if user.donating %}
         <form action="{{url_for('user_home', user_id=user.id)}}" method="post">
-            <button type="submit" class="btn btn-secondary">
+            <button type="submit" class="btn btn-success">
                 Deactivate Donation
             </button>
         </form>

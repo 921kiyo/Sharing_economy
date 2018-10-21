@@ -215,7 +215,11 @@ def buy_product(product_id):
     flash('Purchase complete. Thank you so much!', 'success')
 
     products = session.query(Product).all()
-    return render_template("/index.html", outputs=products)
+    donates = []
+    for p in products:
+        user = session.query(User).filter_by(id=p.user_id).first()
+        donates.append(user.donating) 
+    return render_template("/index.html", products=products, donates=donates)
 
 
 if __name__ == '__main__':
