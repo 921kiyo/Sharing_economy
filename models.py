@@ -3,7 +3,7 @@ import sys
 
 from GLOBALS import DATABASE_URL
 
-from sqlalchemy import Column, ForeignKey, Integer, String, Text, create_engine, Boolean, Float, ARRAY
+from sqlalchemy import Column, ForeignKey, Integer, String, Text, create_engine, Boolean, Float, DECIMAL
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 
@@ -20,8 +20,8 @@ class User(Base):
     age = Column(Integer, nullable=False)
     haversine_distance = Column(Float, default=0)
     donating = Column(Boolean, default=False)
-    total_donated = Column(Float, default=0)
-    monthly_donations = Column(Float, default=0)
+    total_donated = Column(Float(precision=2), default=0)
+    monthly_donations = Column(Float(precision=2), default=0)
     products = relationship("Product")
     charity_id = Column(Integer, nullable=True)
 
@@ -45,10 +45,10 @@ class Product(Base):
     user_id = Column(Integer, ForeignKey('user.id'))
     description = Column(String(250))
     image = Column(String(250), nullable=False)
-    price = Column(Float, nullable=False)
+    price = Column(Float(precision=2), nullable=False)
     condition = Column(String(10), nullable=False)  #
     size = Column(String(10), nullable=True)
-    shipping = Column(Float, default=0)
+    shipping = Column(Float(precision=2), default=0)
     sold = Column(Boolean, default=False)
 
     @property
@@ -69,7 +69,7 @@ class Charity(Base):
     name = Column(String(25), nullable=False)
     mission = Column(String(500), nullable=False)
     url = Column(String(100), nullable=True)
-    amount_raised = Column(Float, default=0)
+    amount_raised = Column(Float(precision=2), default=0)
     num_donators = Column(Integer, default=0)
 
     @property

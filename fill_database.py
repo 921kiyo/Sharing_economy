@@ -42,7 +42,8 @@ def add_users():
                     sex=person["sex"],
                     country=person["country"],
                     city=person["city"],
-                    haversine_distance=haversine(person["longitude"], person["latitude"])
+                    haversine_distance=haversine(person["longitude"], person["latitude"]),
+                    donating=person["donating"]
                     )
 
         session.add(user)

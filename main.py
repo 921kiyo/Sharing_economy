@@ -15,7 +15,7 @@ from flask_sqlalchemy_session import flask_scoped_session
 
 import pandas as pd
 from math import radians, cos, sin, asin, sqrt
-
+import random
 
 app = Flask(__name__)
 
@@ -86,7 +86,7 @@ def recommend(user_id):
 
     print("charity counts", charity_counts)
     if not charity_counts:  # If empty
-        return None
+        return random.randint(1, 3)
 
     best_charity_id = max(charity_counts, key=charity_counts.get)
     return best_charity_id

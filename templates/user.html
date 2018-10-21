@@ -24,12 +24,12 @@
         {% if user.donating %}
         <form action="{{url_for('user_home', user_id=user.id)}}" method="post">
             <button type="submit" class="btn btn-success">
-                Deactivate Donation
+                Donating
             </button>
         </form>
         {% else %}
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-            Apply Donation
+            Donate
         </button>
         {% endif %}
                     

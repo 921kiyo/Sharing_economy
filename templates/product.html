@@ -13,14 +13,6 @@
       <table class="table table-striped">
         <tbody>
             <tr>
-            <td>Size:</td>
-            <td>{{product.size}}</td>
-            </tr>
-            <tr>
-            <td>Shipping_cost:</td>
-            <td>${{product.shipping}}</td>
-            </tr>
-            <tr>
             <td>Price:</td>
             <td>${{product.price}}</td>
             </tr>
@@ -28,9 +20,17 @@
             <td>Condition</td>
             <td>{{product.condition}}</td>
             </tr>
+            <tr>
+            <td>Size:</td>
+            <td>{{product.size}}</td>
+            </tr>
+            <tr>
+            <td>Shipping Cost:</td>
+            <td>${{product.shipping}}</td>
+            </tr>
             {% if charity %}
             <tr>
-            <td>Donation: </td>
+            <td>Donating To: </td>
             <td>{{charity.name}}</td>
             </tr>
             {% endif %}
