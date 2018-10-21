@@ -20,7 +20,7 @@ class User(Base):
     age = Column(Integer, nullable=False)
     haversine_distance = Column(Float, default=0)
     donating = Column(Boolean, default=False)
-    total_donated = Column(Float(precision=2), default=0)
+    total_donated = Column(Float(precision=2, decimal_return_scale=2), default=0)
     monthly_donations = Column(Float(precision=2), default=0)
     products = relationship("Product")
     charity_id = Column(Integer, nullable=True)
