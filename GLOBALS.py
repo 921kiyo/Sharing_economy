@@ -32,7 +32,7 @@ USERS = [
         "latitude": 37.983810,
     },
     {
-        "name": "Oda Nobunaga",
+        "name": "Sakamoto Ryouma",
         "sex": "m",
         "age": 48,
         "country": "Japan",
@@ -59,8 +59,10 @@ PRODUCT_LISTINGS = {
             "id": 1,
             "name": "Navy Blue Peacoat",
             "url": "https://static-mercariapp-uk.akamaized.net/photos/m59397082818_1.jpg?1540043962",
-            "description": "Smooth navy blue Peacoat. Suitable for any aspiring computer scientist.",
-            "price": 26,  # Dollars
+            "description": "Fashioned from the Kinloch Anderson 1925 “Travelling Ulster” this classic pea coat has been adapted for modern living and is made from the finest 100% Wool Melton cloth."
+                           "This jacket is beautifully finished with complementing Kinloch Anderson satin lining and beautiful silk Kinloch Anderson Tartan piping on the inside."
+                           "The coat benefits from two front flap pockets lined with Kinloch Anderson silk tartan and two internal chest pockets.FalseThe front can be buttoned to the neck or left open and complemented with a cashmere scarf for blustery weather.",
+            "price": 201,  # Dollars
             "condition": "Good",
             "size": "L",
             "shipping_cost": 4
@@ -69,35 +71,101 @@ PRODUCT_LISTINGS = {
             "id": 2,
             "name": "Denim Shirt",
             "url": "https://static-mercariapp-uk.akamaized.net/photos/m31249014654_1.jpg?1540040441",
-            "description": "Men's suave denim shirt. Super cool worker look.",
+            "description": "The Men's Denim Shirt is a classic wardrobe piece, "
+                           "and a perfect all-rounder for multiple work day scenarios. "
+                           "Pair this shirt with one of our denim aprons for a popular double-denim look, or coordinate with black skinny jeans and sneakers. "
+                           "The medium-wash fabric is super soft and breathable, ensuring you remain confident and comfortable in your work wear, "
+                           "while modern design features include a button down collar and contrast white buttons for a distinctive fashion edge. ",
             "price": 10,  # Dollars
             "condition": "New",
             "size": "L",
             "shipping_cost": 0
         },
+        {
+            "id": 3,
+            "name": "Me on a T-shirt",
+            "url": "https://images-na.ssl-images-amazon.com/images/I/81i2o5PUC0L._UX385_.jpg",
+            "description": "Tight fit v-neck, light blue T-shirt with a black and white portrait of me and my name emblazoned underneath. 100% cotton t-shirt. Excellent printing quality",
+            "price": 6,  # Dollars
+            "condition": "New",
+            "size": "XL",
+            "shipping_cost": 1
+        },
     ],
     "Albert Einstein": [
         {
             "id": 3,
-            "name": "Incredible Supreme Jumper",
-            "url": "https://ae01.alicdn.com/kf/HTB1Fj2gJVXXXXcqXVXXq6xXFXXXb/Supreme-Sweatshirts-Casual-Hoodies-Brand-Clothing-Couples-Clothes-Men-Women-Tops-Fashion-Moleton-Feminino-Einstein-funny.jpg",
-            "description": "Comfortable jumper with an incredibly handsome man on it.",
-            "price": 64,  # Dollars
+            "name": "Mens Check Vintage Herringbone Tweed Charcoal Grey 3 Piece Suit",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/3/3f/Albert_Einstein_1921_by_F_Schmutzer.jpg",
+            "description": "Mens Tweed Check Vintage 3 Piece Suit. Complete With Blazer, Trouser & Waistcoat polyester blend. Textured Tweed Material with Velvet Trim, Fitted Design"
+                           "Great For Smart Formal Occasions Weddings, Parties, Proms.",
+            "price": 209.99,  # Dollars
             "condition": "Like New",
             "size": "M",
-            "shipping_cost": 1
+            "shipping_cost": 10
         },
         {
             "id": 4,
             "name": "Stylish Men's Shorts",
-            "url": "https://images.express.com/is/image/expressfashion/0026_03532966_0713?cache=on&wid=361&fmt=jpeg&qlt=75,1&resmode=sharp2&op_usm=1,1,5,0&defaultImage=Photo-Coming-Soon",
-            "description": "Great for the beach!",
-            "price": 22,  # Dollars
+            "url": "https://uniqlo.scene7.com/is/image/UNIQLO/goods_02_404214?$pdp-medium$",
+            "description": "These shorts are very comfortable. They are a nice easy shorts to to wear for a social gathering or just lounge around. Comfortable elastic waistband. Mock fly (No opening)."
+                           "67% cotton, 33% polyester.",
+            "price": 22.30,  # Dollars
+            "condition": "Good",
+            "size": "M",
+            "shipping_cost": 3
+        },
+        {
+            "id": 4,
+            "name": "The Barber Wool Blend Trilby Fedora Hat",
+            "url": "https://www.villagehatshop.com/photos/product/giant/4511390S441953/alt/441953.jpg",
+            "description": "The Barber Wool Blend Trilby Fedora Hat by Goorin Bros features a stylish monochromatic look in a rich coffee-brown tweed fabric. "
+                           "Adorned with a simple self-fabric hat band outlined in contrast blue stitching, The Barber Fedora is finished with a small Goorin Bros side pin and striped fabric lining. Casual, comfortable and relaxed, The Barber is a great everyday style to rock all fall and winter long. ",
+            "price": 35,  # Dollars
             "condition": "Poor",
-            "size": "XL",
+            "size": "M",
+            "shipping_cost": 3
+        },
+
+    ],
+    "Sakamoto Ryouma": [
+        {
+            "id": 5,
+            "name": "Hoshi Kabuto Helmet",
+            "url": "http://www.mdginteriors.com/mdg/wp-content/uploads/2016/07/1618-Hoshi-Kabuto-helmet-w-riveted-pointed-nail-ribs-M164.jpg",
+            "description": "Edo period helmet with riveted pointed nail ribs. The suji or ribs are riveted with pointed nails. "
+                           "This gives the helmet its exceptional changing reflection. On the top is a large round hole (tehen) edged with a curved iron plate. "
+                           "Large antlers (kuwagata) and a five-piece neck-guard (shikoro) with indigo-blue cords. The fukigaeshi is decorated with an unidentified crest."
+                           "Suitable for any aspiring or seasoned warrior.",
+            "price": 300,  # Dollars
+            "condition": "Good",
+            "size": "M",
+            "shipping_cost": 10
+        },
+        {
+            "id": 6,
+            "name": "Geta Sandals - Scorched Kiri",
+            "url": "https://www.japan-zone.com/store/images/res/geta-scorched-kiri1_521_370.jpg",
+            "description": "These high-quality geta are made from scorched kiri (paulownia), giving them a nice aged look, with a black felt strap. "
+                           "Wearing them takes a bit of getting used to but they are ideal for cosplay or just for gaining a bit of height!",
+            "price": 125,  # Dollars
+            "condition": "Poor",
+            "size": "M",
             "shipping_cost": 5
         },
+        {
+            "id": 6,
+            "name": "Traditional Japanese Men Yukata Kimono Vintage Samurai Robe OBI Cotton Blue",
+            "url": "https://i.ebayimg.com/images/g/ucwAAOSwkLhZ5xuI/s-l640.jpg",
+            "description": "Japanese long Yukata Kimono Robe. Top quality, authentic 100% cotton. Primary Color: Blue",
+            "price": 44.99,  # Dollars
+            "condition": "Poor",
+            "size": "M",
+            "shipping_cost": 7
+        },
     ]
+
+
 }
 
 
