@@ -8,7 +8,10 @@
 			<a href="{{url_for('show_product', product_id=product.id)}}">
 				<div class="panel-heading">{{product.name}}
 				</div> 
-			<div class="panel-body" ><img src="{{ product.image}}" class="img-responsive" style="width:100%;" alt="{{ product.name}}"></div>
+			<div class="panel-body" >
+				<img src="{{url_for('static', filename='images/product/' + product.image + '.jpg')}}" class="img-responsive" style="width:100%" alt="{{product.name}}">
+			</div>
+
 			{% if donates[loop.index-1] %}
 			<div class="panel-footer">
 				<img src="{{url_for('static', filename='logo/heart.jpg')}}" style="width:50px; height:50px;" alt="Italian Trulli">

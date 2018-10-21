@@ -2,7 +2,9 @@
 {% block content %}
     <div class="col-sm-8">
         <div class="panel panel-default">
-        <div class="panel-body"><img src="{{ product.image}}" class="img-responsive" style="width:100%" alt="{{product.name}}"></div>
+        <div class="panel-body">
+            <img src="{{url_for('static', filename='images/product/' + product.image + '.jpg')}}" class="img-responsive" style="width:100%" alt="{{product.name}}">            
+        </div>
         </div>
 	</div>
     <div class="col-sm-4 text-left">
