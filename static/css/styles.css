@@ -10,6 +10,9 @@
     transform: translateX(-50%);
 }
 
+.mercari{
+    font-family: Century Gothic,CenturyGothic,AppleGothic,sans-serif;
+}
 /* .modal {
     position: absolute;
     top: 10px;
