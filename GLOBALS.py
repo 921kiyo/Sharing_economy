@@ -177,14 +177,31 @@ PRODUCT_LISTINGS = {
 CHARITY_INFO = [
     {
         "name": "Against Malaria Foundation",
-        "mission": "We help protect people from malaria. We fund anti-malaria nets, specifically long-lasting insecticidal nets (LLINs), and work with distribution partners to ensure they are used. We track and report on net use and malaria case data.",
-        "url": "https://www.againstmalaria.com/default.aspx"
+        "mission": "Malaria kills half a million people every year and 400 million fall ill. Before bed nets were made available, it was three or more times that. Nets are a proven intervention - a more effective a way of saving lives than any other. There is still a long way to go and every death from malaria is preventable. "
+                   "We help protect people from malaria. We fund anti-malaria nets, specifically long-lasting insecticidal nets (LLINs), and work with distribution partners to ensure they are used. We track and report on net use and malaria case data.",
+        "url": "https://www.againstmalaria.com/default.aspx",
+        "media": "charity1"
     },
     {
         "name": "Bill & Melinda Gates Foundation",
         "mission": "We seek to unlock the possibility inside every individual. We see equal value in all lives. And so we are dedicated to improving the quality of life for individuals around the world. From the education of students in Chicago, to the health of a young mother in Nigeria, we are catalysts of human promise everywhere.",
-        "url": "https://www.gatesfoundation.org"
+        "url": "https://www.gatesfoundation.org",
+        "media": "charity2"
+    },
+    {
+        "name": "WWF",
+        "mission": "WWF’s work has evolved from saving species and landscapes to addressing the larger global threats and forces that impact them. Recognizing that the problems facing our planet are increasingly more complex and urgent, we have refined the way in which we work around an ambitious new strategy. "
+                   "Our new strategy puts people at the center and organizes our work around six key areas: forests, marine, freshwater, wildlife, food and climate. By linking these six areas in an integrated approach, we can better leverage our unique assets and direct all our resources to protecting vulnerable places, species and communities worldwide.",
+        "url": "https://www.worldwildlife.org/",
+        "media": "charity3"
+    },
+    {
+        "name": "Save the Children",
+        "mission": "In the U.S. and around the world, we give children a healthy start in life, the opportunity to learn and protection from harm. When crisis strikes, we are always among the first to respond and the last to leave. We do whatever it takes to save children, transforming their lives and the future we share.",
+        "url": "https://www.savethechildren.org/",
+        "media": "charity4"
     }
+
 ]
 
 
