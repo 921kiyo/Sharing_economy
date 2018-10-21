@@ -37,15 +37,19 @@ def get_demographic_similarity(df, user_id):
     # Get user column
     user = df[df["id"] == user_id]
 
+    print(user)
+
     df["similarity"] = 0
     # Calculates using euclidean distance
     for col in df.columns:
-        df["similarity"] += (df[col] - user[col]) * (df[col] - user[col])
+        if col != "similarity":
+            print(("attribute", col, "df", df[col], "user val", user[col].iloc[0]))
+            df["similarity"] += (df[col] - user[col].iloc[0]) * (df[col] - user[col].iloc[0])
 
     df["similarity"] = df["similarity"].apply(lambda x: sqrt(x))
 
-    similarity = df["similarity"]
-    similarity.sort_values(ascending=True)
+    similarity = df[["id", "similarity"]]
+    similarity = similarity.sort_values(by=["similarity"], ascending=True)
 
     return similarity
 
@@ -58,22 +62,33 @@ def recommend(user_id):
     :return:
     """
 
-    df = pd.read_sql(DATABASE_URL, columns=["id", "sex", "age", "haversine_distance"])
+    df = pd.read_sql_table(table_name="user", con=DATABASE_URL, columns=["id", "sex", "age", "haversine_distance"])
+    print(df)
 
     k = 5
     similarity = get_demographic_similarity(df, user_id)
 
     # Get the charities then select the most common
+
+    print("similarity df", similarity)
     charity_counts = {}
     for row in range(1, 1 + k):  # Start from 1 as first row is user itself with distance of 0
-        user_id = similarity.iloc[row]
-        u = session.query(User).filter_by(id=user_id).first()
-        charity_counts[u.charity_id] = charity_counts.get(u.charity_id, 0) + 1
-
+        try:
+            user_id = int(similarity["id"].iloc[row])
+            print("user_id", user_id, type(user_id))
+            u = session.query(User).filter_by(id=user_id).first()
+            if u.charity_id is not None:
+                charity_counts[u.charity_id] = charity_counts.get(u.charity_id, 0) + 1
+        except IndexError:
+            break
 
     # Sort and get top 1
-    best_charity_id = max(charity_counts, key=charity_counts.get)
 
+    print("charity counts", charity_counts)
+    if not charity_counts:  # If empty
+        return None
+
+    best_charity_id = max(charity_counts, key=charity_counts.get)
     return best_charity_id
 
 @app.route("/")
@@ -128,10 +143,13 @@ def user_home(user_id):
     all_charities = session.query(Charity).all()
     print("ALL CHARITY ", all_charities)
     user = session.query(User).filter_by(id=user_id).first()
-    # rec_id = recommend(user_id)
-    rec_id = 1
-    rec = session.query(Charity).filter_by(id=rec_id)
-    return render_template("/user.html", products=user_products, user=user, charities=all_charities, recommend=rec)
+
+    rec_id = recommend(user_id)
+    print("recommended id", rec_id)
+    rec = session.query(Charity).filter_by(id=rec_id).first()
+    for c in all_charities:
+        print(c.name)
+    return render_template("/user.html", products=user_products, user=user, charities=all_charities, recommend_charity=rec)
 
 @app.route("/charity")
 @app.route("/charity/<int:charity_id>")
