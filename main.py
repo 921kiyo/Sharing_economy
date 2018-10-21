@@ -160,8 +160,10 @@ def show_product(product_id):
     # if product is None:
     #     return jsonify(output=False, error="Product does not exist")  #TODO: Confirm format
     # product = jsonify(output=product.serialize)
-
-    return render_template("product.html", product=product, seller=seller)
+    charity = None
+    if seller.donating:
+        charity = session.query(Charity).filter_by(id=seller.charity_id).first()
+    return render_template("product.html", product=product, seller=seller, charity=charity)
     
 
 @app.route("/buy/<int:product_id>", methods=["POST"])

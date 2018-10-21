@@ -15,7 +15,9 @@
       <p><b>Price:</b> {{product.price}}</p>
       <p><b>Shipping_cost:</b> {{product.condition}}</p>      
 	  <p><b>Seller:</b> <a href="{{url_for('user_home', user_id=seller.id)}}">{{seller.name}}</a></p>
-      <p><b>Donation</b> XXX</p>
+      {% if charity %}
+      <p><b>Donation</b> {{charity.name}}</p>
+      {% endif %}
       <form action="{{url_for('buy_product', product_id=product.id)}}" method="post">
         <button type="submit" class="btn btn-primary">Purchase</button>
       </form>
