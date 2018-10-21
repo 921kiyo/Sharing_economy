@@ -1,25 +1,45 @@
 {% extends "base.html" %}
 {% block content %}
-    <div class="col-sm-6">
-        <div class="panel panel-primary">
-        <div class="panel-body"><img src="{{ product.image}}" class="img-responsive" style="width:100%" alt="Image"></div>
+    <div class="col-sm-8">
+        <div class="panel panel-default">
+        <div class="panel-body"><img src="{{ product.image}}" class="img-responsive" style="width:100%" alt="{{product.name}}"></div>
         </div>
 	</div>
-    <div class="col-sm-6 text-left"> 
+    <div class="col-sm-4 text-left">
       <h1>{{product.name}}</h1>
       <hr>
       <h3>Description</h3>
       <p>{{product.description}}</p>
-      <p><b>Size:</b> {{product.size}}</p>
-      <p><b>Shipping_cost:</b> $ {{product.shipping}}</p>
-      <p><b>Price:</b> {{product.price}}</p>
-      <p><b>Shipping_cost:</b> {{product.condition}}</p>      
+      <table class="table table-striped">
+        <tbody>
+            <tr>
+            <td>Size:</td>
+            <td>{{product.size}}</td>
+            </tr>
+            <tr>
+            <td>Shipping_cost:</td>
+            <td>${{product.shipping}}</td>
+            </tr>
+            <tr>
+            <td>Price:</td>
+            <td>${{product.price}}</td>
+            </tr>
+            <tr>
+            <td>Condition</td>
+            <td>{{product.condition}}</td>
+            </tr>
+            {% if charity %}
+            <tr>
+            <td>Donation: </td>
+            <td>{{charity.name}}</td>
+            </tr>
+            {% endif %}
+        </tbody>
+        </table>
+    
 	  <p><b>Seller:</b> <a href="{{url_for('user_home', user_id=seller.id)}}">{{seller.name}}</a></p>
-      {% if charity %}
-      <p><b>Donation</b> {{charity.name}}</p>
-      {% endif %}
       <form action="{{url_for('buy_product', product_id=product.id)}}" method="post">
-        <button type="submit" class="btn btn-primary">Purchase</button>
+        <button type="submit" class="btn btn-default">Purchase</button>
       </form>
     </div>
 {% endblock %}
