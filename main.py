@@ -204,7 +204,8 @@ def buy_product(product_id):
 
     if user.donating:
         # Donate 3% of total price (product + shipping)
-        donation = (product.price + product.shipping) * CONTRIBUTION_PERC
+        donation = round((product.price + product.shipping) * CONTRIBUTION_PERC, 2)
+
         user.total_donated = user.total_donated + donation
 
         charity = session.query(Charity).filter_by(id=user.charity_id).first()

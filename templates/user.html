@@ -25,12 +25,12 @@
         <table class="table table-striped">
         <tbody>
             <tr>
-            <td>Total Donated :</td>
+            <td>Lifetime Donations:</td>
             <td>${{user.total_donated}}</td>
             </tr>
             {% if donated %}
             <tr>
-            <td>Donated to:</td>
+            <td>Donating To:</td>
             <td>{{donated.name}}</td>
             </tr>
             {% endif %}
@@ -57,8 +57,8 @@
 <div class=" modal-dialog-centered" style="padding:150px;" role="document">
 <div class="modal-content">
 <div class="modal-header">
-<h2 class="modal-title" id="exampleModalLabel">We Recommend {{recommend_charity.name}}</h2>
-<p>By selecting a charity, 3% of the total price will go to the charity you select</p>
+<h2 class="modal-title" id="exampleModalLabel">We recommend: {{recommend_charity.name}}</h2>
+<p>By choosing to donate, 3% of total price on all products sold will go to the selected charity.</p>
 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 <span aria-hidden="true">&times;</span>
 </button>

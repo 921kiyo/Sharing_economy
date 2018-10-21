@@ -66,9 +66,9 @@ PRODUCT_LISTINGS = {
             "id": 1,
             "name": "Navy Blue Peacoat",
             "url": "img1",
-            "description": "Fashioned from the Kinloch Anderson 1925 “Travelling Ulster” this classic pea coat has been adapted for modern living and is made from the finest 100% Wool Melton cloth."
-                           "This jacket is beautifully finished with complementing Kinloch Anderson satin lining and beautiful silk Kinloch Anderson Tartan piping on the inside."
-                           "The coat benefits from two front flap pockets lined with Kinloch Anderson silk tartan and two internal chest pockets.FalseThe front can be buttoned to the neck or left open and complemented with a cashmere scarf for blustery weather.",
+            "description": "Fashioned from the Kinloch Anderson 1925 “Travelling Ulster” this classic pea coat has been adapted for modern living and is made from the finest 100% Wool Melton cloth. "
+                           "This jacket is beautifully finished with complementing Kinloch Anderson satin lining and beautiful silk Kinloch Anderson Tartan piping on the inside. "
+                           "The coat benefits from two front flap pockets lined with Kinloch Anderson silk tartan and two internal chest pockets. The front can be buttoned to the neck or left open and complemented with a cashmere scarf for blustery weather. ",
             "price": 201,  # Dollars
             "condition": "Good",
             "size": "L",
@@ -92,7 +92,7 @@ PRODUCT_LISTINGS = {
             "id": 3,
             "name": "Me on a T-shirt",
             "url": "img3",
-            "description": "Tight fit v-neck, light blue T-shirt with a black and white portrait of me and my name emblazoned underneath. 100% cotton t-shirt. Excellent printing quality",
+            "description": "Tight fit v-neck, light blue T-shirt with a black and white portrait of me and my name emblazoned underneath. 100% cotton t-shirt. Excellent printing quality.",
             "price": 6,  # Dollars
             "condition": "New",
             "size": "XL",
@@ -104,7 +104,7 @@ PRODUCT_LISTINGS = {
             "id": 4,
             "name": "Vintage 3 Piece Suit",
             "url": "img4",
-            "description": "Mens Tweed Check Vintage 3 Piece Suit. Complete With Blazer, Trouser & Waistcoat polyester blend. Textured Tweed Material with Velvet Trim, Fitted Design"
+            "description": "Mens Tweed Check Vintage 3 Piece Suit. Complete With Blazer, Trouser & Waistcoat polyester blend. Textured Tweed Material with Velvet Trim, Fitted Design. "
                            "Great For Smart Formal Occasions Weddings, Parties, Proms.",
             "price": 209.99,  # Dollars
             "condition": "Like New",
@@ -115,7 +115,7 @@ PRODUCT_LISTINGS = {
             "id": 5,
             "name": "Stylish Men's Shorts",
             "url": "img5",
-            "description": "These shorts are very comfortable. They are a nice easy shorts to to wear for a social gathering or just lounge around. Comfortable elastic waistband. Mock fly (No opening)."
+            "description": "These shorts are very comfortable. They are a nice easy shorts to to wear for a social gathering or just lounge around. Comfortable elastic waistband. Mock fly (No opening). "
                            "67% cotton, 33% polyester.",
             "price": 22.30,  # Dollars
             "condition": "Good",
@@ -142,7 +142,7 @@ PRODUCT_LISTINGS = {
             "url": "img7",
             "description": "Edo period helmet with riveted pointed nail ribs. The suji or ribs are riveted with pointed nails. "
                            "This gives the helmet its exceptional changing reflection. On the top is a large round hole (tehen) edged with a curved iron plate. "
-                           "Large antlers (kuwagata) and a five-piece neck-guard (shikoro) with indigo-blue cords. The fukigaeshi is decorated with an unidentified crest."
+                           "Large antlers (kuwagata) and a five-piece neck-guard (shikoro) with indigo-blue cords. The fukigaeshi is decorated with an unidentified crest. "
                            "Suitable for any aspiring or seasoned warrior.",
             "price": 300,  # Dollars
             "condition": "Good",
@@ -162,7 +162,7 @@ PRODUCT_LISTINGS = {
         },
         {
             "id": 9,
-            "name": "Traditional Yukata Samurai Robe",
+            "name": "Yukata Samurai Robe",
             "url": "img9",
             "description": "Japanese long Yukata Kimono Robe. Top quality, authentic 100% cotton. Primary Color: Blue",
             "price": 44.99,  # Dollars
@@ -186,7 +186,7 @@ CHARITY_INFO = [
     },
     {
         "name": "Bill & Melinda Gates Foundation",
-        "mission": "We seek to unlock the possibility inside every individual. We see equal value in all lives. And so we are dedicated to improving the quality of life for individuals around the world. From the education of students in Chicago, to the health of a young mother in Nigeria, we are catalysts of human promise everywhere.",
+        "mission": "We seek to unlock the possibility inside every individual. We see equal value in all lives. And so we are dedicated to improving the quality of life for individuals around the world. From the education of students in Chicago, to the health of a young mother in Nigeria, we are catalysts of human promise everywhere. ",
         "url": "https://www.gatesfoundation.org",
         "media": "charity2"
     },
