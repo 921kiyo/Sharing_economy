@@ -9,7 +9,7 @@
             <a href="{{url_for('show_product', product_id=product.id)}}">
                 <div class="panel-heading">{{product.name}}</div>
             </a>
-            <div class="panel-body"><img src="{{ product.image}}" class="img-responsive" style="width:100%" alt="Image"></div>
+            <div class="panel-body"><img src="{{url_for('static', filename='images/product.url')}}" class="img-responsive" style="width:100%" alt="Image"></div>
             <div class="panel-footer">$ {{product.price}}</div>
             </div>
         </div>
@@ -54,7 +54,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-6">
-                <img src="{{url_for('static', filename='logo/recommend_charity.url')}}" style="width:50px; height:50px;" alt="Italian Trulli">
+                <img src="{{url_for('static', filename='images/' + recommend_charity.image)}}" style="width:50px; height:50px;" alt="Italian Trulli">
             </div>
             <div class="col-md-6">{{recommend_charity.mission}} ZZZ</div>
         </div>
@@ -81,5 +81,20 @@
 
 
 <script>
+    function myFunction() {
+        var input, filter, ul, li, a, i;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        ul = document.getElementById("myUL");
+        li = ul.getElementsByTagName("li");
+        for (i = 0; i < li.length; i++) {
+            a = li[i].getElementsByTagName("a")[0];
+            if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                li[i].style.display = "";
+            } else {
+                li[i].style.display = "none";
+            }
+        }
+    }
 </script>
 {% endblock %}
