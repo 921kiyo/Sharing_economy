@@ -23,8 +23,7 @@ USERS = [
         "city": "Philadelphia",
         "longitude": -75.165222,
         "latitude": 39.952583,
-        "donating": True,
-        "charity_id": 2
+        "donating": False,
     },
     {
         "name": "Alexander the Great",
@@ -34,7 +33,8 @@ USERS = [
         "city": "Athens",
         "longitude": 23.727539,
         "latitude": 37.983810,
-        "donating": False
+        "donating": True,
+        "charity_id": 3
     },
     {
         "name": "Sakamoto Ryouma",
@@ -102,7 +102,7 @@ PRODUCT_LISTINGS = {
     "Albert Einstein": [
         {
             "id": 4,
-            "name": "Mens Check Vintage Herringbone Tweed Charcoal Grey 3 Piece Suit",
+            "name": "Vintage 3 Piece Suit",
             "url": "img4",
             "description": "Mens Tweed Check Vintage 3 Piece Suit. Complete With Blazer, Trouser & Waistcoat polyester blend. Textured Tweed Material with Velvet Trim, Fitted Design"
                            "Great For Smart Formal Occasions Weddings, Parties, Proms.",
@@ -124,7 +124,7 @@ PRODUCT_LISTINGS = {
         },
         {
             "id": 6,
-            "name": "The Barber Wool Blend Trilby Fedora Hat",
+            "name": "Trilby Fedora Hat",
             "url": "img6",
             "description": "The Barber Wool Blend Trilby Fedora Hat by Goorin Bros features a stylish monochromatic look in a rich coffee-brown tweed fabric. "
                            "Adorned with a simple self-fabric hat band outlined in contrast blue stitching, The Barber Fedora is finished with a small Goorin Bros side pin and striped fabric lining. Casual, comfortable and relaxed, The Barber is a great everyday style to rock all fall and winter long. ",
@@ -162,7 +162,7 @@ PRODUCT_LISTINGS = {
         },
         {
             "id": 9,
-            "name": "Traditional Japanese Men Yukata Kimono Vintage Samurai Robe OBI Cotton Blue",
+            "name": "Traditional Yukata Samurai Robe",
             "url": "img9",
             "description": "Japanese long Yukata Kimono Robe. Top quality, authentic 100% cotton. Primary Color: Blue",
             "price": 44.99,  # Dollars
