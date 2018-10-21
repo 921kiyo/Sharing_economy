@@ -49,7 +49,7 @@ def get_demographic_similarity(df, user_id):
     df["similarity"] = df["similarity"].apply(lambda x: sqrt(x))
 
     similarity = df[["id", "similarity"]]
-    similarity.sort_values(by=["similarity"], ascending=True)
+    similarity = similarity.sort_values(by=["similarity"], ascending=True)
 
     return similarity
 
@@ -77,13 +77,18 @@ def recommend(user_id):
             user_id = int(similarity["id"].iloc[row])
             print("user_id", user_id, type(user_id))
             u = session.query(User).filter_by(id=user_id).first()
-            charity_counts[u.charity_id] = charity_counts.get(u.charity_id, 0) + 1
+            if u.charity_id is not None:
+                charity_counts[u.charity_id] = charity_counts.get(u.charity_id, 0) + 1
         except IndexError:
             break
 
     # Sort and get top 1
-    best_charity_id = max(charity_counts, key=charity_counts.get)
 
+    print("charity counts", charity_counts)
+    if not charity_counts:  # If empty
+        return None
+
+    best_charity_id = max(charity_counts, key=charity_counts.get)
     return best_charity_id
 
 @app.route("/")
@@ -134,8 +139,11 @@ def user_home(user_id):
     print("ALL CHARITY ", all_charities)
     user = session.query(User).filter_by(id=user_id).first()
     rec_id = recommend(user_id)
-    rec = session.query(Charity).filter_by(id=rec_id)
-    return render_template("/user.html", products=user_products, user=user, charities=all_charities, recommend=rec)
+    print("recommended id", rec_id)
+    rec = session.query(Charity).filter_by(id=rec_id).first()
+    for c in all_charities:
+        print(c.name)
+    return render_template("/user.html", products=user_products, user=user, charities=all_charities, recommend_charity=rec)
 
 @app.route("/charity")
 @app.route("/charity/<int:charity_id>")
