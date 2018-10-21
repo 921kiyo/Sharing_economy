@@ -14,10 +14,10 @@
 
 			{% if donates[loop.index-1] %}
 			<div class="panel-footer">
-				<img src="{{url_for('static', filename='logo/heart.jpg')}}" style="width:25px; height:25px;" alt="Italian Trulli">
+				<img src="{{url_for('static', filename='logo/heart.jpg')}}" style="width:40px; height:40px;" alt="Donation">
 				$ {{product.price}}</div>
 			{% else %}			
-			<div class="panel-footer">
+			<div class="panel-footer" style="min-height: 61px;">
 				$ {{product.price}}
 			</div>
 			</a>
