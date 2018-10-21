@@ -104,7 +104,6 @@ def home():
     for p in products:
         user = session.query(User).filter_by(id=p.user_id).first()
         donates.append(user.donating) 
-    print("DONATE ", donates)
     # # TODO: Change html
     return render_template("/index.html", products=products, donates=donates)
 
