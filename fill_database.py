@@ -46,6 +46,9 @@ def add_users():
                     donating=person["donating"]
                     )
 
+        if person["donating"]:
+            user.charity_id = person["charity_id"]
+
         session.add(user)
 
     session.commit()
@@ -77,7 +80,8 @@ def add_charities():
 
         c = Charity(name=charity["name"],
                     mission=charity["mission"],
-                    url=charity["url"])
+                    url=charity["url"],
+                    media=charity["media"])
 
         if charity.get("url") is not None and charity.get("url") != "":
             c.url = charity["url"]
