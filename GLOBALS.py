@@ -12,7 +12,8 @@ USERS = [
         "city": "New York",
         "longitude": -73.935242,
         "latitude": 40.730610,
-        "donating": True
+        "donating": True,
+        "charity_id": 1
     },
     {
         "name": "Albert Einstein",
@@ -22,7 +23,8 @@ USERS = [
         "city": "Philadelphia",
         "longitude": -75.165222,
         "latitude": 39.952583,
-        "donating": True
+        "donating": True,
+        "charity_id": 2
     },
     {
         "name": "Alexander the Great",

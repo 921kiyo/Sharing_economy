@@ -69,6 +69,7 @@ class Charity(Base):
     name = Column(String(25), nullable=False)
     mission = Column(String(500), nullable=False)
     url = Column(String(100), nullable=True)
+    media = Column(String(100), nullable=True)
     amount_raised = Column(Float(precision=2), default=0)
     num_donators = Column(Integer, default=0)
 
