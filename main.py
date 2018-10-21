@@ -99,9 +99,13 @@ def home():
     # :return:
     # """
     products = session.query(Product).all()
-
+    users = session.query(User).all()
+    donates = []
+    for p in products:
+        user = session.query(User).filter_by(id=p.user_id).first()
+        donates.append(user.donating) 
     # # TODO: Change html
-    return render_template("/index.html", products=products)
+    return render_template("/index.html", products=products, donates=donates)
 
 
 @app.route("/user/<int:user_id>", methods=["GET", "POST"])
@@ -138,6 +142,7 @@ def user_home(user_id):
     all_charities = session.query(Charity).all()
     print("ALL CHARITY ", all_charities)
     user = session.query(User).filter_by(id=user_id).first()
+
     rec_id = recommend(user_id)
     print("recommended id", rec_id)
     rec = session.query(Charity).filter_by(id=rec_id).first()
@@ -172,8 +177,10 @@ def show_product(product_id):
     # if product is None:
     #     return jsonify(output=False, error="Product does not exist")  #TODO: Confirm format
     # product = jsonify(output=product.serialize)
-
-    return render_template("product.html", product=product, seller=seller)
+    charity = None
+    if seller.donating:
+        charity = session.query(Charity).filter_by(id=seller.charity_id).first()
+    return render_template("product.html", product=product, seller=seller, charity=charity)
     
 
 @app.route("/buy/<int:product_id>", methods=["POST"])

@@ -5,11 +5,19 @@
     padding:50px;
 } */
 
+body{
+    background-color: red;
+}
 .centered {
     left: 50%;
     transform: translateX(-50%);
 }
-
+a {
+    text-decoration: none;
+ } 
+.mercari{
+    font-family: Century Gothic,CenturyGothic,AppleGothic,sans-serif;
+}
 /* .modal {
     position: absolute;
     top: 10px;
