@@ -146,9 +146,10 @@ def user_home(user_id):
     rec_id = recommend(user_id)
     print("recommended id", rec_id)
     rec = session.query(Charity).filter_by(id=rec_id).first()
-    for c in all_charities:
-        print(c.name)
-    return render_template("/user.html", products=user_products, user=user, charities=all_charities, recommend_charity=rec)
+
+    donated = session.query(Charity).filter_by(id=user.charity_id).first()
+    
+    return render_template("/user.html", products=user_products, user=user, charities=all_charities, recommend_charity=rec, donated=donated)
 
 @app.route("/charity")
 @app.route("/charity/<int:charity_id>")
