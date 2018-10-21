@@ -15,7 +15,7 @@ from flask_sqlalchemy_session import flask_scoped_session
 
 import pandas as pd
 from math import radians, cos, sin, asin, sqrt
-
+import random
 
 app = Flask(__name__)
 
@@ -86,7 +86,7 @@ def recommend(user_id):
 
     print("charity counts", charity_counts)
     if not charity_counts:  # If empty
-        return None
+        return random.randint(1, 3)
 
     best_charity_id = max(charity_counts, key=charity_counts.get)
     return best_charity_id
@@ -128,13 +128,13 @@ def user_home(user_id):
             user.donating = True
             user.charity_id = charity_id
             # charity.num_donators = charity.num_donators + 1
-            flash('Thank you for much for helping our charity partner!!', 'success')
+            # flash('Thank you for much for helping our charity partner!!', 'success')
 
         else:
             charity = session.query(Charity).filter_by(id=user.charity_id).first()
             user.donating = False
             # charity_id.num_donators = charity.num_donators - 1
-            flash("Sad you are leaving the donation", "error")            
+            # flash("Sad you are leaving the donation", "error")
         session.commit()
 
     # Returns the list of products by the user
@@ -211,7 +211,10 @@ def buy_product(product_id):
 
         print("Total donated to date is", user.total_donated, "to", charity.name)
 
+    # Remove product from product table
+    session.delete(product)
     session.commit()
+
     flash('Purchase complete. Thank you so much!', 'success')
 
     products = session.query(Product).all()

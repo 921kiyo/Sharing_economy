@@ -20,16 +20,16 @@
         <h1>{{user.name}}</h1>
         <hr>
         <!-- <h3>Description</h3> -->
-        <p><b>Total Donation raised: $ {{user.total_donated}}</b></p>    
+        <p><b>Total Donated: $ {{user.total_donated}}</b></p>
         {% if user.donating %}
         <form action="{{url_for('user_home', user_id=user.id)}}" method="post">
             <button type="submit" class="btn btn-success">
-                Deactivate Donation
+                Donating
             </button>
         </form>
         {% else %}
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-            Apply Donation
+            Donate
         </button>
         {% endif %}
                     
@@ -74,7 +74,7 @@
         {% endfor %}        
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button submit" class="btn btn-primary">Apply donation</button>
+            <button type="button submit" class="btn btn-primary">Donate</button>
         </div>
     </form>
 </div>
